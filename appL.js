@@ -46,9 +46,13 @@ function getApi(location) {
 function dataDisplay(arr) {
   let price;
   let card = ''
- 
-//  arr.ev_pricing == null ? price = 'free' : price = arr.ev_pricing
-if (arr.ev_pricing == null) {price = 'free'}
+
+  //arr.ev_pricing == null ? price = 'free' : price = arr.ev_pricing
+  if (arr.ev_pricing == null) {
+    price = 'free'
+  } else {
+    price = arr.ev_pricing
+  }
 
 
   for (let i = 0; i <= 1; i++) {
@@ -59,7 +63,7 @@ if (arr.ev_pricing == null) {price = 'free'}
       `<p>${arr[i].city}, ${arr[i].state}, ${arr[i].zip}</p>` +
       `<p>${arr[i].station_phone}</p>` +
       `<p>${arr[i].ev_connector_types}</p>` +
-      `<p>${arr[i].price}</p>`
+      `<p>${price[i]}</p>`
     )
   }
   console.log(card)
