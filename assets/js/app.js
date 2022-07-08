@@ -3,7 +3,7 @@ const apikey = '2RWEmIH2pRUJZcqZ1v5HIAPtokWgcKHxrzrK8GK2'
 
   function getApi(zipcode) {
   var zipcode = 90710  
-  var requestUrl = `https://developer.nrel.gov/api/alt-fuel-stations/v1.json?limit=5&fuel_type=ELEC&zipcode=${zipcode}&api_key=${apikey}`
+  var requestUrl = `https://developer.nrel.gov/api/alt-fuel-stations/v1.json?limit=5&fuel_type=ELEC&zip=${zipcode}&api_key=${apikey}`
 
     fetch(requestUrl)
       .then(function (response) {
