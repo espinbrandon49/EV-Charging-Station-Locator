@@ -1,83 +1,10 @@
 header {
-    border: 1px solid black;
+    border: 10px solid black;
     text-align: center;
 }
 
-main {
-    border: 10px solid black;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-#searchAndMap {
-    display: flex;
-}
-
-#searchForm {
-    width: 25%;
-    border: 1px solid green;
-}
-
-form {
-    border: 1px solid red;
-}
-
-#savedLocations {
-    border: 1px solid red;
-    display: flex;
-    flex-direction: column;
-}
-
-#mapSection {
-    border: 1px solid green;
-    display: flex;
-    width: 75%;
-    height: 50vh;
-}
-
-#bgLocationCard {
-    border: 1px solid red;
-    width: 25%;
-}
-
-<<<<<<< HEAD
-#map {
-    border: 1px solid red;
-    width: 75%;
-=======
-#mapDiv {
-  border: 1px solid red;
-  width: 75%;
-  height: 100%;
->>>>>>> 2f36793fce5181e8491ab6a22c6468edff5459c8
-}
-
-#otherLocations {
-    border: 1px solid green;
-}
-
-#fiveCards {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-}
-
-.card {
-    border: 1px solid red;
-    min-width: 200px;
-}
-
-input[type="email"],
-textarea,
-select {
-    height: 38px;
-    padding: 6px 10px;
-    /* The 6px vertically centers text on FF, ignored by Webkit */
-    background-color: #fff;
-    border: 1px solid #D1D1D1;
-    border-radius: 4px;
-    box-shadow: none;
-    box-sizing: border-box;
+#searchSection {
+    text-align: center;
 }
 
 
