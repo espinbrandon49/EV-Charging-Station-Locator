@@ -1,45 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href=".//assets/css/style.css">
 
     <title>🍃Alternative Fuel</title>
-</head>
+  </head>
 
-<body>
+  <body>
+    <header class="jumbotron">
+      <h1>🍃Alternative</h1>
+    </header>
+    <main>
 
-    <Header>
-        <div class="Jumbotron">
-            <h1>🍃Alternative</h1>
-            <div class="navbar">
-
-            </div>
+      <section id="searchAndMap">
+        
+      <article id="searchForm">
+        <form id="searchSection">
+          <h2>Search Cities or Zip Code</h2>
+          <div>
+            <input id="searchInput" type="search" placeholder="city
+              or zipcode">
+            <label for="searchInput"><button id="searchBtn"> Search
+              </button></label>
+          </div>
+        </form>
+        <div id="savedLocations">
+          <button class="btn">Name1</button>
+          <button class="btn">Name1</button>
+          <button class="btn">Name1</button>
         </div>
-    </Header>
+      </article>
 
-
-    <section>
-
-        <div>
-            <h2>Search Cities or Zip Code</h2>
-            <input id="searchInput" type="text">
-            <button id="searchBtn"> Search </button>
-
-        </div>
-
-
-        <div class="container">
-            <h2 class='' id="city-header"></h2>
-            <ul id="main-location"></ul>
-        </div>
+      <article id='mapSection'>
+        <section id="bgLocationCard">
+          <h2 class='' id="city-header">Location Name</h3>
+          <p>info</p>
+          <p>info</p>
+          <p>info</p>
+          <p>info</p>
+          <p>info</p>
+        </section>
+        <section id="map"></section>
+      </article>
 
     </section>
 
+      <section id="otherLocations">
+        <h2>Other Locations</h2>
 
+        <section id='fiveCards'>
 
+          <div class='card'>
+            <h3>Card 1</h3>
+            <p>info</p>
+            <p>info</p>
+            <p>info</p>
+            <p>info</p>
+            <p>info</p>
+          </div>
+          <div class='card'>
+            <h3>Card 2</h3>
+            <p>info</p>
+            <p>info</p>
+            <p>info</p>
+            <p>info</p>
+            <p>info</p>
+          </div>
+          <div class='card'>
+            <h3>Card 3</h3>
+            <p>info</p>
+            <p>info</p>
+            <p>info</p>
+            <p>info</p>
+            <p>info</p>
+          </div>
+          <div class='card'>
+            <h3>Card 4</h3>
+            <p>info</p>
+            <p>info</p>
+            <p>info</p>
+            <p>info</p>
+            <p>info</p>
+          </div>
+          <div class='card'>
+            <h3>Card 5</h3>
+            <p>info</p>
+            <p>info</p>
+            <p>info</p>
+            <p>info</p>
+            <p>info</p>
+          </div>
+
+        </section>
+
+      </section>
+
+    </main>
+
+    <script src="./assets/js/app.js"></script>
+
+  </body>
 
 </html>

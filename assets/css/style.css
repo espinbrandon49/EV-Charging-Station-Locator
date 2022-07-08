@@ -1,1 +1,60 @@
-body {}
+header {
+  border: 1px solid blue;
+  text-align: center;
+}
+
+main {
+  border: 1px solid blue;
+  width: 1200px;
+  margin: 0 auto;
+}
+
+#searchAndMap {
+display: flex;
+}
+
+#searchForm {
+  width: 20%;
+}
+
+form {
+  border: 1px solid green;
+}
+#savedLocations {
+  border: 1px solid green;
+  display: flex;
+  flex-direction: column;
+}
+#mapSection {
+  width: 80%;
+  border: 1px solid green;
+  display: flex;
+  justify-content: space-between;
+}
+
+#bgLocationCard {
+  border: 1px solid red;
+}
+
+#map {
+  border: 1px solid red;
+  width: 600px;
+  height: 400px;
+}
+
+
+
+
+
+#otherLocations {
+  border: 1px solid green;
+}
+
+#fiveCards {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card {
+  border: 1px solid red;
+}

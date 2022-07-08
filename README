@@ -1,0 +1,7 @@
+  git checkout -b <name of file>
+  git push origin <name of file>
+
+    * Check back out to your local `master` branch by running the following in your terminal:
+
+  ```
+  git checkout master

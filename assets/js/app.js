@@ -1,11 +1,9 @@
 //https://developer.nrel.gov/docs/transportation/alt-fuel-stations-v1/all/
 const apikey = '2RWEmIH2pRUJZcqZ1v5HIAPtokWgcKHxrzrK8GK2'
 
-  function getApi() {
-    //var requestUrl = `http://api/alt-fuel-stations/${apikey}`
-  //var requestUrl = `http://api/alt-fuel-stations/v1.json?api_key=${apikey}`
-    
-  var requestUrl = `https://developer.nrel.gov/api/alt-fuel-stations/v1.json?limit=100&fuel_type=HY&api_key=2RWEmIH2pRUJZcqZ1v5HIAPtokWgcKHxrzrK8GK2`
+  function getApi(zipcode) {
+  var zipcode = 90710  
+  var requestUrl = `https://developer.nrel.gov/api/alt-fuel-stations/v1.json?limit=5&fuel_type=ELEC&zipcode=${zipcode}&api_key=${apikey}`
 
     fetch(requestUrl)
       .then(function (response) {
@@ -19,8 +17,15 @@ const apikey = '2RWEmIH2pRUJZcqZ1v5HIAPtokWgcKHxrzrK8GK2'
         // TODO: Loop through the data and generate your HTML
       });
   }
-  
- getApi();
- //MAP
- //PRICES
- //NAME and address
+
+getApi();
+
+//h2 - city name, state, zipcode
+//div - 5 cards w/
+  //p - retailer name
+  //p - address
+  //p - ev network
+  //p - ev connector type
+  //p - payment types selected
+
+//input zipcode parameter for 5 numbers only
