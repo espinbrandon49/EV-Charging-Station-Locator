@@ -6,25 +6,25 @@ const searchBtn = document.getElementById('searchBtn')
 const bgLocationCard = document.getElementById('bgLocationCard')
 
 searchBtn.addEventListener('click', (e) => {
-  e.preventDefault()
-  getApi(searchInput.value)
+    e.preventDefault()
+    getApi(searchInput.value)
 })
 
 function getApi(location) {
-  var requestUrl = `https://developer.nrel.gov/api/alt-fuel-stations/v1/nearest.json?location=${location}&fuel_type_code='ELEC'&radius=5.0&api_key=${apikey}`
+    var requestUrl = `https://developer.nrel.gov/api/alt-fuel-stations/v1/nearest.json?location=${location}&fuel_type_code='ELEC'&radius=5.0&api_key=${apikey}`
 
-  fetch(requestUrl)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      // Use the console to examine the response
-      console.log(data);
+    fetch(requestUrl)
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(data) {
+            // Use the console to examine the response
+            console.log(data);
 
-      // TODO: Run functions
-      const dArray = data.fuel_stations
-      bgLocationCard.innerHTML = dataDisplay(dArray)
-    });
+            // TODO: Run functions
+            const dArray = data.fuel_stations
+            bgLocationCard.innerHTML = dataDisplay(dArray)
+        });
 }
 
 /*function dataDisplay(arr) {
@@ -44,26 +44,26 @@ function getApi(location) {
 }*/
 
 function dataDisplay(arr) {
-  let price;
-  let card = ''
- 
-//  arr.ev_pricing == null ? price = 'free' : price = arr.ev_pricing
-if (arr.ev_pricing == null) {price = 'free'}
+    let price;
+    let card = ''
+
+    //  arr.ev_pricing == null ? price = 'free' : price = arr.ev_pricing
+    if (arr.ev_pricing == null) { price = 'free' }
 
 
-  for (let i = 0; i <= 1; i++) {
-    card = (
-      `<h3>${arr[i].station_name}</h3>` +
-      `<p>${arr[i].distance.toFixed(2)} MPH</p>` +
-      `<p>${arr[i].street_address}</p>` +
-      `<p>${arr[i].city}, ${arr[i].state}, ${arr[i].zip}</p>` +
-      `<p>${arr[i].station_phone}</p>` +
-      `<p>${arr[i].ev_connector_types}</p>` +
-      `<p>${arr[i].price}</p>`
-    )
-  }
-  console.log(card)
-  return card
+    for (let i = 0; i <= 1; i++) {
+        card = (
+            `<h3>${arr[i].station_name}</h3>` +
+            `<p>${arr[i].distance.toFixed(2)} MPH</p>` +
+            `<p>${arr[i].street_address}</p>` +
+            `<p>${arr[i].city}, ${arr[i].state}, ${arr[i].zip}</p>` +
+            `<p>${arr[i].station_phone}</p>` +
+            `<p>${arr[i].ev_connector_types}</p>` +
+            `<p>${arr[i].price}</p>`
+        )
+    }
+    console.log(card)
+    return card
 }
 
 //returns ascending distance list
@@ -76,21 +76,19 @@ if (arr.ev_pricing == null) {price = 'free'}
 //BLC
 //h4 - retailer name 
 //p - distance
-  //p - address
-  //p - City, State, Zip
-  //p - phone
-  //p - ev connector type
-  //p - ev_pricing
+//p - address
+//p - City, State, Zip
+//p - phone
+//p - ev connector type
+//p - ev_pricing
 
 
 //Nearby
 //div - 5 cards w/
 //h4 - retailer name 
 //p - distance
-  //p - address
-  //p - City, State, Zip
-  //p - phone
-  //p - ev connector type
-  //p - ev_pricing
-
-
+//p - address
+//p - City, State, Zip
+//p - phone
+//p - ev connector type
+//p - ev_pricing
