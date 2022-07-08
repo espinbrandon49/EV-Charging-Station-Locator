@@ -4,12 +4,11 @@ let stationArr = []
 const searchInput = document.getElementById('searchInput')
 const searchBtn = document.getElementById('searchBtn')
 const bgLocationCard = document.getElementById('bgLocationCard')
-var mapApiKey = 'AIzaSyCwOpX2oKnyXKnYiW9qPF3jQ4cmQpmVxyY'
+
 searchBtn.addEventListener('click', (e) => {
   e.preventDefault()
   getApi(searchInput.value)
 })
-var mapDiv = document.getElementById('mapDiv')
 
 function getApi(location) {
   var requestUrl = `https://developer.nrel.gov/api/alt-fuel-stations/v1/nearest.json?location=${location}&fuel_type_code='ELEC'&radius=5.0&api_key=${apikey}`
@@ -28,33 +27,7 @@ function getApi(location) {
     });
 }
 
-// Create the script tag, set the appropriate attributes
-var script = document.createElement('script');
-script.src = 'https://maps.googleapis.com/maps/api/js?key='+ (mapApiKey) + '&callback=initMap';
-script.async = true;
-
-// Attach your callback function to the `window` object
-window.initMap = function() {
-  // JS API is loaded and available
-  console.log('test map')
- 
-};
-
-// Append the 'script' element to 'head'
-document.head.appendChild(script);
-
-let map;
-
-function initMap() {
-  map = new google.maps.Map(document.getElementById("mapDiv"), {
-    center: { lat: -34.397, lng: 150.644 },
-    zoom: 8,
-  });
-}
-
-window.initMap = initMap;
-
-function BLCDisplay(arr) {
+/*function dataDisplay(arr) {
   let price;
   let card = ''
   arr.ev_pricing == null ? price = 'free': price = arr.ev_pricing 
@@ -68,14 +41,18 @@ function BLCDisplay(arr) {
     `<p>${price}</p>`
     )
     return card
-}
+}*/
 
 function dataDisplay(arr) {
   let price;
   let card = ''
- 
-//  arr.ev_pricing == null ? price = 'free' : price = arr.ev_pricing
-if (arr.ev_pricing == null) {price = 'free'}
+
+  //arr.ev_pricing == null ? price = 'free' : price = arr.ev_pricing
+  if (arr.ev_pricing == null) {
+    price = 'free'
+  } else {
+    price = arr.ev_pricing
+  }
 
 
   for (let i = 0; i <= 1; i++) {
@@ -86,7 +63,7 @@ if (arr.ev_pricing == null) {price = 'free'}
       `<p>${arr[i].city}, ${arr[i].state}, ${arr[i].zip}</p>` +
       `<p>${arr[i].station_phone}</p>` +
       `<p>${arr[i].ev_connector_types}</p>` +
-      `<p>${arr[i].price}</p>`
+      `<p>${price[i]}</p>`
     )
   }
   console.log(card)
