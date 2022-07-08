@@ -37,9 +37,10 @@ form {
   width: 25%;
 }
 
-#map {
+#mapDiv {
   border: 1px solid red;
   width: 75%;
+  height: 100%;
 }
 
 #otherLocations {

@@ -4,11 +4,12 @@ let stationArr = []
 const searchInput = document.getElementById('searchInput')
 const searchBtn = document.getElementById('searchBtn')
 const bgLocationCard = document.getElementById('bgLocationCard')
-
+var mapApiKey = 'AIzaSyCwOpX2oKnyXKnYiW9qPF3jQ4cmQpmVxyY'
 searchBtn.addEventListener('click', (e) => {
   e.preventDefault()
   getApi(searchInput.value)
 })
+var mapDiv = document.getElementById('mapDiv')
 
 function getApi(location) {
   var requestUrl = `https://developer.nrel.gov/api/alt-fuel-stations/v1/nearest.json?location=${location}&fuel_type_code='ELEC'&radius=5.0&api_key=${apikey}`
@@ -26,6 +27,33 @@ function getApi(location) {
       BLCDisplay(dArray[0])
     });
 }
+
+// Create the script tag, set the appropriate attributes
+var script = document.createElement('script');
+script.src = 'https://maps.googleapis.com/maps/api/js?key='+ (mapApiKey) + '&callback=initMap';
+script.async = true;
+
+// Attach your callback function to the `window` object
+window.initMap = function() {
+  // JS API is loaded and available
+  console.log('test map')
+ mapDiv.innerHTML = initMap() 
+ 
+};
+
+// Append the 'script' element to 'head'
+document.head.appendChild(script);
+
+let map;
+
+function initMap() {
+  map = new google.maps.Map(document.getElementById("mapDiv"), {
+    center: { lat: -34.397, lng: 150.644 },
+    zoom: 8,
+  });
+}
+
+window.initMap = initMap;
 
 function BLCDisplay(arr) {
   let price;
