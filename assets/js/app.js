@@ -4,11 +4,12 @@ let stationArr = []
 const searchInput = document.getElementById('searchInput')
 const searchBtn = document.getElementById('searchBtn')
 const bgLocationCard = document.getElementById('bgLocationCard')
-
+var mapApiKey = 'AIzaSyCwOpX2oKnyXKnYiW9qPF3jQ4cmQpmVxyY'
 searchBtn.addEventListener('click', (e) => {
     e.preventDefault()
     getApi(searchInput.value)
 })
+var mapDiv = document.getElementById('mapDiv')
 
 function getApi(location) {
     var requestUrl = `https://developer.nrel.gov/api/alt-fuel-stations/v1/nearest.json?location=${location}&fuel_type_code='ELEC'&radius=5.0&api_key=${apikey}`
@@ -27,7 +28,20 @@ function getApi(location) {
         });
 }
 
-/*function dataDisplay(arr) {
+
+// Attach your callback function to the `window` object
+let map;
+
+function initMap() {
+  map = new google.maps.Map(document.getElementById("mapDiv"), {
+    center: { lat: -34.397, lng: 150.644 },
+    zoom: 8,
+  });
+}
+
+window.initMap = initMap;
+
+function BLCDisplay(arr) {
   let price;
   let card = ''
   arr.ev_pricing == null ? price = 'free': price = arr.ev_pricing 
@@ -41,7 +55,7 @@ function getApi(location) {
     `<p>${price}</p>`
     )
     return card
-}*/
+}
 
 function dataDisplay(arr) {
     let price;

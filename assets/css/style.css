@@ -40,9 +40,16 @@ form {
     width: 25%;
 }
 
+<<<<<<< HEAD
 #map {
     border: 1px solid red;
     width: 75%;
+=======
+#mapDiv {
+  border: 1px solid red;
+  width: 75%;
+  height: 100%;
+>>>>>>> 2f36793fce5181e8491ab6a22c6468edff5459c8
 }
 
 #otherLocations {
