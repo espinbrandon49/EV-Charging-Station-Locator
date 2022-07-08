@@ -1,31 +1,75 @@
 //https://developer.nrel.gov/docs/transportation/alt-fuel-stations-v1/all/
 const apikey = '2RWEmIH2pRUJZcqZ1v5HIAPtokWgcKHxrzrK8GK2'
+let stationArr = []
+const searchInput = document.getElementById('searchInput')
+const searchBtn = document.getElementById('searchBtn')
+const bgLocationCard = document.getElementById('bgLocationCard')
 
-  function getApi(zipcode) {
-  var zipcode = 90710  
-  var requestUrl = `https://developer.nrel.gov/api/alt-fuel-stations/v1.json?limit=5&fuel_type=ELEC&zip=${zipcode}&api_key=${apikey}`
+searchBtn.addEventListener('click', (e) => {
+  e.preventDefault()
+  getApi(searchInput.value)
+})
 
-    fetch(requestUrl)
-      .then(function (response) {
-        return response.json();
-      })
-      .then(function (data) {
-        // Use the console to examine the response
-        console.log(data);
-        
-        console.log(data.fuel_stations[0].city)
-        // TODO: Loop through the data and generate your HTML
-      });
-  }
+function getApi(location) {
+  var requestUrl = `https://developer.nrel.gov/api/alt-fuel-stations/v1/nearest.json?location=${location}&fuel_type_code='ELEC'&radius=5.0&api_key=${apikey}`
 
-getApi();
+  fetch(requestUrl)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      // Use the console to examine the response
+      console.log(data);
 
-//h2 - city name, state, zipcode
-//div - 5 cards w/
-  //p - retailer name
+      // TODO: Run functions
+      const dArray = data.fuel_stations
+      BLCDisplay(dArray[0])
+    });
+}
+
+function BLCDisplay(arr) {
+  let price;
+  arr.ev_pricing == null ? price = 'free': price = arr.ev_pricing 
+  bgLocationCard.innerHTML = (
+    `<h3>${arr.station_name}</h3>`+
+    `<p>${arr.distance.toFixed(2)} MPH</p>`+
+    `<p>${arr.street_address}</p>`+
+    `<p>${arr.city, arr.state, arr.zip}</p>`+
+    `<p>${arr.station_phone}</p>`+
+    `<p>${arr.ev_connector_types}</p>`+
+    `<p>${price}</p>`
+    )
+}
+
+
+
+
+
+//returns ascending distance list
+//default loads with last searched
+
+//Search Buttons
+//retailer Name
+//Zip
+
+//BLC
+//h4 - retailer name 
+//p - distance
   //p - address
-  //p - ev network
+  //p - City, State, Zip
+  //p - phone
   //p - ev connector type
-  //p - payment types selected
+  //p - ev_pricing
 
-//input zipcode parameter for 5 numbers only
+
+//Nearby
+//div - 5 cards w/
+//h4 - retailer name 
+//p - distance
+  //p - address
+  //p - City, State, Zip
+  //p - phone
+  //p - ev connector type
+  //p - ev_pricing
+
+
