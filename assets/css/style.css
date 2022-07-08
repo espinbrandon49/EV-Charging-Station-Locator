@@ -3,18 +3,62 @@ header {
     text-align: center;
 }
 
-#searchSection {
-    text-align: center;
+body {
+    background-color: #aab2ab;
 }
 
+main {
+    border: 10px solid black;
+    max-width: 1200px;
+    margin: 0 auto;
+}
 
-/* Removes awkward default styles on some inputs for iOS */
+#searchAndMap {
+    display: flex;
+}
 
-input[type="email"],
-textarea {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
+#searchForm {
+    width: 25%;
+    border: 1px solid green;
+}
+
+form {
+    border: 1px solid red;
+}
+
+#savedLocations {
+    border: 1px solid red;
+    display: flex;
+    flex-direction: column;
+}
+
+#mapSection {
+    border: 1px solid green;
+    display: flex;
+    width: 75%;
+    height: 50vh;
+}
+
+#bgLocationCard {
+    max-width: fit-content;
+}
+
+#map {
+    border: 1px solid red;
+    width: 75%;
+}
+
+#otherLocations {}
+
+#fiveCards {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.card {
+    border: 1px solid red;
+    min-width: 200px;
 }
 
 textarea {
