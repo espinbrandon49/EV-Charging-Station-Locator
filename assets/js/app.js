@@ -10,12 +10,13 @@ const savedLocations = document.getElementById('savedLocations')
 
 var mapApiKey = 'AIzaSyCwOpX2oKnyXKnYiW9qPF3jQ4cmQpmVxyY'
 searchBtn.addEventListener('click', (e) => {
-  e.preventDefault()
-  getApi(searchInput.value)
+    e.preventDefault()
+    getApi(searchInput.value)
 })
 var mapDiv = document.getElementById('mapDiv')
 
 function getApi(location) {
+
   var requestUrl = `https://developer.nrel.gov/api/alt-fuel-stations/v1/nearest.json?location=${location}&fuel_type_code='ELEC'&radius=5.0&api_key=${apikey}`
 
   fetch(requestUrl)
@@ -31,19 +32,21 @@ function getApi(location) {
       bgLocationCard.innerHTML = dataDisplay1(dArray, 1)
       dataDisplay5(dArray, 5)
     });
+
 }
 
 // Attach your callback function to the `window` object
 let map;
 
 function initMap() {
-  map = new google.maps.Map(document.getElementById("mapDiv"), {
-    center: { lat: -34.397, lng: 150.644 },
-    zoom: 8,
-  });
+    map = new google.maps.Map(document.getElementById("mapDiv"), {
+        center: { lat: -34.397, lng: 150.644 },
+        zoom: 8,
+    });
 }
 window.initMap = initMap;
 // Attach your callback function to the `window` object
+
 
 function dataDisplay5(arr, length) {
   const card = document.createElement('div')
@@ -86,6 +89,7 @@ function dataDisplay1(arr, length, price) {
     )
   }
   return card
+
 }
 
 function displaySearches () {
@@ -110,20 +114,33 @@ displaySearches()
 //BLC
 //h4 - retailer name 
 //p - distance
-  //p - address
-  //p - City, State, Zip
-  //p - phone
-  //p - ev connector type
-  //p - ev_pricing
+//p - address
+//p - City, State, Zip
+//p - phone
+//p - ev connector type
+//p - ev_pricing
 
 //Nearby
 //div - 5 cards w/
 //h4 - retailer name 
 //p - distance
-  //p - address
-  //p - City, State, Zip
-  //p - phone
-  //p - ev connector type
-  //p - ev_pricing
+//p - address
+//p - City, State, Zip
+//p - phone
+//p - ev connector type
+//p - ev_pricing
 
 
+
+
+
+//David's javascript
+
+document.getElementById("startBtn").addEventListener("click", function() {
+    document.getElementById("main").classList.remove("hidden")
+    document.getElementById("startBtn").classList.add("hidden")
+    document.getElementById("the").classList.add("hidden")
+    document.getElementById("find").classList.add("hidden")
+
+});
+//David's javascript

@@ -1,111 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href=".//assets/css/style.css">
     <title>🍃Alternative Fuel</title>
-  </head>
+</head>
 
-  <body>
+<body>
     <header>
-      <h1>🍃Alternative</h1>
-    </header>
-    <main>
-
-      <section id="searchAndMap">
-
-      <article id="searchForm">
-        <form id="searchSection">
-          <h2>Search Cities or Zip Code</h2>
-          <div>
-            <input id="searchInput" type="search" placeholder="city
-              or zipcode">
-            <label for="searchInput"><button id="searchBtn"> Search
-              </button></label>
-          </div>
-        </form>
-        <div id="savedLocations">
-          <button class="btn">Name1</button>
-          <button class="btn">Name1</button>
-          <button class="btn">Name1</button>
+        <h1>🍃Alternative</h1>
+        <div id="the">Click the button</div>
+        <button id="startBtn">
+           
+            Start</button>
+        <div id="find">
+            <p>Find Your Station</p>
+            <p>⚡🔌🚘 </p>
         </div>
-      </article>
 
-      <article id='mapSection'>
-        <section id="bgLocationCard">
-          <h2>Big LocationCard</h2>
-          <p>info</p>
-          <p>info</p>
-          <p>info</p>
-          <p>info</p>
-          <p>info</p>
-        </section>
-        <section id="mapDiv">MAP</section>
-      </article>
+    </header>
+    <main id="main" class="hidden">
 
-    </section>
+        <section id="searchAndMap">
 
-      <section id="otherLocations">
-        <h2>Other Locations</h2>
+            <article id="searchForm">
+                <form id="searchSection">
+                    <h2>Search Cities or Zip Code</h2>
+                    <div>
+                        <input id="searchInput" type="search" placeholder="city or zipcode">
+                        <label for="searchInput"><button id="searchBtn"> Search
+              </button></label>
+                    </div>
+                </form>
+                <div id="savedLocations">
+                    <button class="btn">Name1</button>
+                    <button class="btn">Name1</button>
+                    <button class="btn">Name1</button>
+                </div>
+                <div class="select" type="select"><label class="label" for="SkeCar">Your Veichle</label>
+                    <select name="ske_Car" id="skeCar"><option value="Tesla">Tesla</option>
+                    <option value="Toyota">Toyota</option>
+                    <option value="Ford">Ford</option>
+                    <option value="Lucid">Lucid</option>
+                    <option value="Rivian">Rivian</option>
+                  </select></div>
+            </article>
 
-        <section id='fiveCards'>
-
-          <div class='card'>
-            <h4>Card 1</h4>
-            <p>info</p>
-            <p>info</p>
-            <p>info</p>
-            <p>info</p>
-            <p>info</p>
-          </div>
-          <div class='card'>
-            <h4>Card 1</h4>
-            <p>info</p>
-            <p>info</p>
-            <p>info</p>
-            <p>info</p>
-            <p>info</p>
-          </div>
-          <div class='card'>
-            <h4>Card 1</h4>
-            <p>info</p>
-            <p>info</p>
-            <p>info</p>
-            <p>info</p>
-            <p>info</p>
-          </div>
-          <div class='card'>
-            <h4>Card 1</h4>
-            <p>info</p>
-            <p>info</p>
-            <p>info</p>
-            <p>info</p>
-            <p>info</p>
-          </div>
-          <div class='card'>
-            <h4>Card 1</h4>
-            <p>info</p>
-            <p>info</p>
-            <p>info</p>
-            <p>info</p>
-            <p>info</p>
-          </div>
+            <article id='mapSection'>
+                <section id="bgLocationCard">
+                    <h2>Location</h2>
+                    <p>Distance</p>
+                    <p>Address</p>
+                    <p>Phone number</p>
+                    <p>info</p>
+                    <p>info</p>
+                </section>
+                <section id="mapDiv">MAP</section>
+            </article>
 
         </section>
 
-      </section>
+        <section id="otherLocations">
+            <h2>Other Locations</h2>
+
+            <section id='fiveCards'>
+
+                <div class='card'>
+                    <h4>Card 1</h4>
+                    <p>info</p>
+                    <p>info</p>
+                    <p>info</p>
+                    <p>info</p>
+                    <p>info</p>
+                </div>
+                <div class='card'>
+                    <h4>Card 1</h4>
+                    <p>info</p>
+                    <p>info</p>
+                    <p>info</p>
+                    <p>info</p>
+                    <p>info</p>
+                </div>
+                <div class='card'>
+                    <h4>Card 1</h4>
+                    <p>info</p>
+                    <p>info</p>
+                    <p>info</p>
+                    <p>info</p>
+                    <p>info</p>
+                </div>
+                <div class='card'>
+                    <h4>Card 1</h4>
+                    <p>info</p>
+                    <p>info</p>
+                    <p>info</p>
+                    <p>info</p>
+                    <p>info</p>
+                </div>
+                <div class='card'>
+                    <h4>Card 1</h4>
+                    <p>info</p>
+                    <p>info</p>
+                    <p>info</p>
+                    <p>info</p>
+                    <p>info</p>
+                </div>
+
+            </section>
+
+        </section>
 
     </main>
 
     <script src="./assets/js/app.js"></script>
-    <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
-    defer
-  ></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly" defer></script>
 
-  </body>
+</body>
 
 </html>
