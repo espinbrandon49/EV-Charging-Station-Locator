@@ -8,7 +8,6 @@ const fiveCards = document.getElementById('fiveCards')
 const cardBtns = document.getElementsByClassName('cardBtns')
 const savedLocations = document.getElementById('savedLocations')
 
-var mapApiKey = 'AIzaSyCwOpX2oKnyXKnYiW9qPF3jQ4cmQpmVxyY'
 searchBtn.addEventListener('click', (e) => {
     e.preventDefault()
     getApi(searchInput.value)
@@ -35,17 +34,12 @@ function getApi(location) {
 
 }
 
-// Attach your callback function to the `window` object
-let map;
-
-function initMap() {
-    map = new google.maps.Map(document.getElementById("mapDiv"), {
-        center: { lat: -34.397, lng: 150.644 },
-        zoom: 8,
-    });
-}
-window.initMap = initMap;
-// Attach your callback function to the `window` object
+// Leaflet javascript
+var map = L.map('mapDiv').setView([51.505, -0.09], 13);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '© OpenStreetMap'
+}).addTo(map);
 
 
 function dataDisplay5(arr, length) {
