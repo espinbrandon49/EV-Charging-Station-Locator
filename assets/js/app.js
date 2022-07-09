@@ -74,7 +74,7 @@ function getApiByID(location) {
 
       // TODO: Run functions
       dataDisplay1(data.alt_fuel_station)
-      latLon(data.alt_fuel_station.latitude, data.alt_fuel_station.longitude)
+      //latLon(data.alt_fuel_station.latitude, data.alt_fuel_station.longitude)
     });
 }
 
@@ -87,7 +87,6 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);*/
 
 
-
 // Create display for station info on map_Section
 function dataDisplay1(arr, price) {
   bgLocationCard.innerHTML = ''
@@ -95,7 +94,6 @@ function dataDisplay1(arr, price) {
   arr.ev_pricing == null ? price = 'free' : price = arr.ev_pricing
   BLC.innerHTML = `
       <h4 onclick="test()" class='cardBtns'>${arr.station_name}</h4>
-      <p>${arr.distance} MPH</p> 
       <p>${arr.street_address}</p> 
       <p>${arr.city}, ${arr.state}, ${arr.zip}</p> 
       <p>${arr.station_phone}</p> 
@@ -103,7 +101,7 @@ function dataDisplay1(arr, price) {
       <p>${price}</p> 
       `
   bgLocationCard.appendChild(BLC)
-  saveStation(arr.station_name)
+  saveStation([arr.station_name, arr.id])
 }
 
 // Create display for station info on nearby_Locations section
@@ -133,8 +131,7 @@ function dataDisplay5(arr, length) {
     stationInfo.prepend(cardBtn)
     cardBtn.addEventListener('click', () => {
       getApiByID(cardBtn.value)
-      console.log(cardBtn.value)
-      saveStation(cardBtn.textContent)
+      saveStation([cardBtn.textContent, cardBtn.value])
     })
   }
   fiveCards.appendChild(card)
@@ -142,11 +139,15 @@ function dataDisplay5(arr, length) {
 
 // Save searches
 function saveStation(content) {
-  if (!stationArr.includes(content)) {
+  let newArr = []
+  stationArr.forEach(element => newArr.push(element[0]))
+  if (!newArr.includes(content[0])) {
     stationArr.push(content)
     let stations = JSON.stringify(stationArr)
     localStorage.setItem('station', stations)
     displaySearches()
+  } else {
+    console.log('red')
   }
 }
 
@@ -158,8 +159,9 @@ function displaySearches() {
   savedLocations.innerHTML = ''
   for (let i = 0; i < searches.length; i++) {
     let searchItem = document.createElement('button')
-    searchItem.textContent = searches[i]
+    searchItem.textContent = searches[i][0]
     searchItem.setAttribute('class', 'searchItem')
+    searchItem.addEventListener('click', ()=> {getApiByID(searches[i][1])})
     savedLocations.appendChild(searchItem)
   }
 } displaySearches()
@@ -189,5 +191,3 @@ function displaySearches() {
 //p - phone
 //p - ev connector type
 //p - ev_pricing
-
-
