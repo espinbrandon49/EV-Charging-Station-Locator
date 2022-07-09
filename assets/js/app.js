@@ -1,6 +1,4 @@
 const apikey = '2RWEmIH2pRUJZcqZ1v5HIAPtokWgcKHxrzrK8GK2'
-//Do we still need mapApiKey?
-const mapApiKey = 'AIzaSyCwOpX2oKnyXKnYiW9qPF3jQ4cmQpmVxyY'
 let stationArr = JSON.parse(localStorage.getItem('station')) || []
 const searchInput = document.getElementById('searchInput')
 const bgLocationCard = document.getElementById('bgLocationCard')
@@ -9,7 +7,7 @@ const cardBtns = document.getElementsByClassName('cardBtns')
 const savedLocations = document.getElementById('savedLocations')
 const mapDiv = document.getElementById('mapDiv')
 
-// Click start_Button to use station search 
+// Click start_Button to use station search application
 document.getElementById("startBtn").addEventListener("click", function () {
   document.getElementById("main").classList.remove("hidden")
   document.getElementById("startBtn").classList.add("hidden")
@@ -65,15 +63,12 @@ function getApiByID(location) {
 }
 
 // View EV stations on a map in your given (search parameter) region
-// Attach your callback function to the `window` object
-let map;
-function initMap() {
-  map = new google.maps.Map(document.getElementById("mapDiv"), {
-    center: { lat: -34.397, lng: 150.644 },
-    zoom: 8,
-  });
-}
-window.initMap = initMap;
+// Leaflet javascript
+var map = L.map('mapDiv').setView([51.505, -0.09], 13);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '© OpenStreetMap'
+}).addTo(map);
 
 // Create display for station info on map_Section
 function dataDisplay1(arr, price) {
