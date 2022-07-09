@@ -15,13 +15,11 @@ document.getElementById("startBtn").addEventListener("click", function () {
   document.getElementById("find").classList.add("hidden")
 });
 
-
 // Click search_Button to find a station
 const searchBtn = document.getElementById('searchBtn')
 searchBtn.addEventListener('click', (e) => {
   e.preventDefault()
   getApi(searchInput.value)
-  
 })
 
 // Retrieve and display station location and retail information 
@@ -44,18 +42,6 @@ function getApi(location) {
       dataDisplay5(data.fuel_stations, 6)
       latLon(data.latitude, data.longitude)
     });
-    
-  }
-
- // mapDiv.remove(mapDiv)
-
-  function latLon(lat, lon) {
-    var map = L.map('mapDiv').setView([lat, lon], 12);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '© OpenStreetMap'
-    }).addTo(map);
-    console.log('red')
   }
 
 // Create and display from saved_Search and search_Station selections to map_Section by ID
@@ -86,6 +72,15 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '© OpenStreetMap'
 }).addTo(map);*/
 
+ // mapDiv.remove(mapDiv)
+ function latLon(lat, lon) {
+  var map = L.map('mapDiv').setView([lat, lon], 12);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '© OpenStreetMap'
+  }).addTo(map);
+  console.log('red')
+}
 
 // Create display for station info on map_Section
 function dataDisplay1(arr, price) {
@@ -107,13 +102,13 @@ function dataDisplay1(arr, price) {
 // Create display for station info on nearby_Locations section
 function dataDisplay5(arr, length) {
   const card = document.createElement('div')
-  card.classList.add('card')
   fiveCards.innerHTML = "";
 
   for (let i = 1; i < length; i++) {
     arr[i].ev_pricing == null ? price = 'free' : price = arr[i].ev_pricing
 
     const stationInfo = document.createElement('aside')
+    stationInfo.setAttribute('class', 'card')
     stationInfo.innerHTML = `
     <p>${arr[i].distance.toFixed(2)}</p>
     <p>${arr[i].street_address}</p> 
