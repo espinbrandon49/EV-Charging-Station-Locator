@@ -85,7 +85,7 @@ form {
     border: 1px solid green;
 }
 
-#fiveCards {
+#fiveCards > div{
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
@@ -93,7 +93,7 @@ form {
 
 .card {
     border: 1px solid green;
-    min-width: 200px;
+    min-width: 100px;
 }
 
 
