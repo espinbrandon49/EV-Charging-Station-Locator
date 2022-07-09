@@ -59,16 +59,26 @@ function getApiByID(location) {
 
       // TODO: Run functions
       dataDisplay1(data.alt_fuel_station)
+      latLon(data.alt_fuel_station.latitude, data.alt_fuel_station.longitude)
     });
 }
 
 // View EV stations on a map in your given (search parameter) region
 // Leaflet javascript
-var map = L.map('mapDiv').setView([51.505, -0.09], 13);
+/*var map = L.map('mapDiv').setView([51.505, -0.09], 13);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '© OpenStreetMap'
-}).addTo(map);
+}).addTo(map);*/
+
+function latLon(lat, lon) {
+  var map = L.map('mapDiv').setView([lat, lon], 13);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '© OpenStreetMap'
+  }).addTo(map);
+  console.log('red')
+}
 
 // Create display for station info on map_Section
 function dataDisplay1(arr, price) {
@@ -77,7 +87,7 @@ function dataDisplay1(arr, price) {
   arr.ev_pricing == null ? price = 'free' : price = arr.ev_pricing
   BLC.innerHTML = `
       <h4 onclick="test()" class='cardBtns'>${arr.station_name}</h4>
-      <p>${arr.distance.toFixed(2)} MPH</p> 
+      <p>${arr.distance} MPH</p> 
       <p>${arr.street_address}</p> 
       <p>${arr.city}, ${arr.state}, ${arr.zip}</p> 
       <p>${arr.station_phone}</p> 
