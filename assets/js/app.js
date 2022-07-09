@@ -6,26 +6,26 @@ const searchBtn = document.getElementById('searchBtn')
 const bgLocationCard = document.getElementById('bgLocationCard')
 var mapApiKey = 'AIzaSyCwOpX2oKnyXKnYiW9qPF3jQ4cmQpmVxyY'
 searchBtn.addEventListener('click', (e) => {
-  e.preventDefault()
-  getApi(searchInput.value)
+    e.preventDefault()
+    getApi(searchInput.value)
 })
 var mapDiv = document.getElementById('mapDiv')
 
 function getApi(location) {
-  var requestUrl = `https://developer.nrel.gov/api/alt-fuel-stations/v1/nearest.json?location=${location}&fuel_type_code='ELEC'&radius=5.0&api_key=${apikey}`
+    var requestUrl = `https://developer.nrel.gov/api/alt-fuel-stations/v1/nearest.json?location=${location}&fuel_type_code='ELEC'&radius=5.0&api_key=${apikey}`
 
-  fetch(requestUrl)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      // Use the console to examine the response
-      console.log(data);
+    fetch(requestUrl)
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(data) {
+            // Use the console to examine the response
+            console.log(data);
 
-      // TODO: Run functions
-      const dArray = data.fuel_stations
-      bgLocationCard.innerHTML = dataDisplay(dArray)
-    });
+            // TODO: Run functions
+            const dArray = data.fuel_stations
+            bgLocationCard.innerHTML = dataDisplay(dArray)
+        });
 }
 
 
@@ -33,51 +33,51 @@ function getApi(location) {
 let map;
 
 function initMap() {
-  map = new google.maps.Map(document.getElementById("mapDiv"), {
-    center: { lat: -34.397, lng: 150.644 },
-    zoom: 8,
-  });
+    map = new google.maps.Map(document.getElementById("mapDiv"), {
+        center: { lat: -34.397, lng: 150.644 },
+        zoom: 8,
+    });
 }
 
 window.initMap = initMap;
 
 function BLCDisplay(arr) {
-  let price;
-  let card = ''
-  arr.ev_pricing == null ? price = 'free': price = arr.ev_pricing 
-  card = (
-    `<h3>${arr.station_name}</h3>`+
-    `<p>${arr.distance.toFixed(2)} MPH</p>`+
-    `<p>${arr.street_address}</p>`+
-    `<p>${arr.city}, ${arr.state}, ${arr.zip}</p>`+
-    `<p>${arr.station_phone}</p>`+
-    `<p>${arr.ev_connector_types}</p>`+
-    `<p>${price}</p>`
+    let price;
+    let card = ''
+    arr.ev_pricing == null ? price = 'free' : price = arr.ev_pricing
+    card = (
+        `<h3>${arr.station_name}</h3>` +
+        `<p>${arr.distance.toFixed(2)} MPH</p>` +
+        `<p>${arr.street_address}</p>` +
+        `<p>${arr.city}, ${arr.state}, ${arr.zip}</p>` +
+        `<p>${arr.station_phone}</p>` +
+        `<p>${arr.ev_connector_types}</p>` +
+        `<p>${price}</p>`
     )
     return card
 }
 
 function dataDisplay(arr) {
-  let price;
-  let card = ''
- 
-//  arr.ev_pricing == null ? price = 'free' : price = arr.ev_pricing
-if (arr.ev_pricing == null) {price = 'free'}
+    let price;
+    let card = ''
+
+    //  arr.ev_pricing == null ? price = 'free' : price = arr.ev_pricing
+    if (arr.ev_pricing == null) { price = 'free' }
 
 
-  for (let i = 0; i <= 1; i++) {
-    card = (
-      `<h3>${arr[i].station_name}</h3>` +
-      `<p>${arr[i].distance.toFixed(2)} MPH</p>` +
-      `<p>${arr[i].street_address}</p>` +
-      `<p>${arr[i].city}, ${arr[i].state}, ${arr[i].zip}</p>` +
-      `<p>${arr[i].station_phone}</p>` +
-      `<p>${arr[i].ev_connector_types}</p>` +
-      `<p>${arr[i].price}</p>`
-    )
-  }
-  console.log(card)
-  return card
+    for (let i = 0; i <= 1; i++) {
+        card = (
+            `<h3>${arr[i].station_name}</h3>` +
+            `<p>${arr[i].distance.toFixed(2)} MPH</p>` +
+            `<p>${arr[i].street_address}</p>` +
+            `<p>${arr[i].city}, ${arr[i].state}, ${arr[i].zip}</p>` +
+            `<p>${arr[i].station_phone}</p>` +
+            `<p>${arr[i].ev_connector_types}</p>` +
+            `<p>${arr[i].price}</p>`
+        )
+    }
+    console.log(card)
+    return card
 }
 
 //returns ascending distance list
@@ -90,21 +90,34 @@ if (arr.ev_pricing == null) {price = 'free'}
 //BLC
 //h4 - retailer name 
 //p - distance
-  //p - address
-  //p - City, State, Zip
-  //p - phone
-  //p - ev connector type
-  //p - ev_pricing
+//p - address
+//p - City, State, Zip
+//p - phone
+//p - ev connector type
+//p - ev_pricing
 
 
 //Nearby
 //div - 5 cards w/
 //h4 - retailer name 
 //p - distance
-  //p - address
-  //p - City, State, Zip
-  //p - phone
-  //p - ev connector type
-  //p - ev_pricing
+//p - address
+//p - City, State, Zip
+//p - phone
+//p - ev connector type
+//p - ev_pricing
 
 
+
+
+
+//David's javascript
+
+document.getElementById("startBtn").addEventListener("click", function() {
+    document.getElementById("main").classList.remove("hidden")
+    document.getElementById("startBtn").classList.add("hidden")
+    document.getElementById("the").classList.add("hidden")
+    document.getElementById("find").classList.add("hidden")
+
+});
+//David's javascript
