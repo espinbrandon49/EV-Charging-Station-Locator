@@ -165,7 +165,7 @@ function dataDisplay5(arr, length) {
 }
 
 // Create display of previous searches as buttons 
-function displaySearches() {
+/*function displaySearches() {
   if (!localStorage.station) { return }
   let searches = JSON.parse(localStorage.getItem('station'))
 
@@ -180,7 +180,50 @@ function displaySearches() {
     })
     savedLocations.appendChild(searchItem)
   }
+} displaySearches()*/
+
+function displaySearches() {
+  if (!localStorage.station) { return }
+  let searches = JSON.parse(localStorage.getItem('station'))
+
+  savedLocations.innerHTML = ''
+  for (let i = 0; i < searches.length; i++) {
+    const searchItem = document.createElement('button')
+    searchItem.textContent = searches[i][0]
+    searchItem.setAttribute('class', 'searchItem')
+    searchItem.addEventListener('click', () => {
+      getApiByID(searches[i][1])
+      getApiByZip(searches[i][2])
+    })
+
+    const deleteBtn = document.createElement('button')
+    deleteBtn.textContent = 'X'
+    deleteBtn.setAttribute('class', 'deleteBtn')
+    savedLocations.appendChild(deleteBtn)
+    deleteBtn.addEventListener('click', () => {
+      deleteSearch(stationArr, searches[i])
+      console.log(searches[i])
+      console.log(typeof searches[i])
+      console.log(stationArr.indexOf(searches[i]))
+      console.log(stationArr)
+      console.log(searches)
+    })
+    savedLocations.appendChild(searchItem)
+  }
 } displaySearches()
+
+function deleteSearch (arr, content) {
+  let newContent = content.toString()
+  stationArr.splice(arr.indexOf(newContent), 1)
+  console.log(arr)
+  console.log(arr.indexOf(newContent))
+  console.log(typeof newContent)
+  console.log(newContent)
+  let stations = JSON.stringify(stationArr)
+  localStorage.setItem('station', stations)
+  displaySearches()
+  console.log(arr)
+}
 
 // Save and persist searches in local storage
 function saveStation(content) {
