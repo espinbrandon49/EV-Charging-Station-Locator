@@ -6,6 +6,7 @@ const fiveCards = document.getElementById('fiveCards')
 const cardBtns = document.getElementsByClassName('cardBtns')
 const savedLocations = document.getElementById('savedLocations')
 const mapDiv = document.getElementById('mapDiv')
+let map;
 
 // Click start_Button to use station search application
 document.getElementById("startBtn").addEventListener("click", function () {
@@ -42,7 +43,7 @@ function getApi(location) {
       dataDisplay5(data.fuel_stations, 6)
       latLon(data.latitude, data.longitude)
     });
-  }
+}
 
 // Create and display from saved_Search and search_Station selections to map_Section by ID
 function getApiByID(location) {
@@ -65,23 +66,15 @@ function getApiByID(location) {
 }
 
 // View EV stations on a map in your given (search parameter) region
-// Leaflet javascript
-/*var map = L.map('mapDiv').setView([51.505, -0.09], 13);
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+function latLon(lat, lon) {
+  if (map != undefined) { map.remove(); }
+ map = L.map('mapDiv').setView([`${lat}`, `${lon}`], 12);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '© OpenStreetMap'
-}).addTo(map);*/
-
- // mapDiv.remove(mapDiv)
- function latLon(lat, lon) {
-  var map = L.map('mapDiv').setView([lat, lon], 12);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-      attribution: '© OpenStreetMap'
   }).addTo(map);
-  console.log('red')
 }
-
+ 
 // Create display for station info on map_Section
 function dataDisplay1(arr, price) {
   bgLocationCard.innerHTML = ''
@@ -141,8 +134,6 @@ function saveStation(content) {
     let stations = JSON.stringify(stationArr)
     localStorage.setItem('station', stations)
     displaySearches()
-  } else {
-    console.log('red')
   }
 }
 
@@ -156,7 +147,7 @@ function displaySearches() {
     let searchItem = document.createElement('button')
     searchItem.textContent = searches[i][0]
     searchItem.setAttribute('class', 'searchItem')
-    searchItem.addEventListener('click', ()=> {getApiByID(searches[i][1])})
+    searchItem.addEventListener('click', () => { getApiByID(searches[i][1]) })
     savedLocations.appendChild(searchItem)
   }
 } displaySearches()
