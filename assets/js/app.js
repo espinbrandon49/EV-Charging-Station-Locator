@@ -23,7 +23,8 @@ searchBtn.addEventListener('click', (e) => {
   getApi(searchInput.value)
 })
 
-// Retrieve and display station location and retail information 
+
+//1. Retrieve and display station location and retailer information from search bar
 function getApi(location) {
 
   //https://developer.nrel.gov/docs/transportation/alt-fuel-stations-v1/nearest/
@@ -39,13 +40,17 @@ function getApi(location) {
       console.log(data);
 
       // TODO: Run functions
+      // display station info for map view
       dataDisplay1(data.fuel_stations[0])
+      // display nearby locations
       dataDisplay5(data.fuel_stations, 6)
+      // display map
       latLon(data.latitude, data.longitude)
     });
 }
 
-// Create and display from saved_Search and search_Station selections to map_Section by ID
+
+//2. Retrieve and display station location and retailer information with card buttons
 function getApiByID(location) {
   //https://developer.nrel.gov/docs/transportation/alt-fuel-stations-v1/get/
 
@@ -60,11 +65,42 @@ function getApiByID(location) {
       console.log(data);
 
       // TODO: Run functions
+      // display station info for map view
       dataDisplay1(data.alt_fuel_station)
+      // display map
+      latLon(data.alt_fuel_station.latitude, data.alt_fuel_station.longitude)
     });
 }
 
-// View EV stations on a map in your given (search parameter) region
+
+//3. Retrieve and display station location and retailer information with saved search buttons
+function getApiByZip(location) {
+
+  //https://developer.nrel.gov/docs/transportation/alt-fuel-stations-v1/nearest/
+
+  var requestUrl = `https://developer.nrel.gov/api/alt-fuel-stations/v1/nearest.json?location=${location}&fuel_type_code='ELEC'&radius=5.0&api_key=${apikey}`
+
+  fetch(requestUrl)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      // Use the console to examine the response
+      console.log(data);
+
+      // TODO: Run functions
+      dataDisplay5(data.fuel_stations, 6)
+    });
+}
+
+// Load default map of Berkeley, California
+map = L.map('mapDiv').setView([37.871, -122.259], 12);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  maxZoom: 19,
+  attribution: '© OpenStreetMap'
+}).addTo(map);
+
+// Create display for map of EV stations in the given (search parameter) region
 function latLon(lat, lon) {
   if (map != undefined) { map.remove(); }
   map = L.map('mapDiv').setView([lat, lon], 12);
@@ -74,14 +110,7 @@ function latLon(lat, lon) {
   }).addTo(map);
 }
 
-//if (map != undefined) { map.remove(); }
-map = L.map('mapDiv').setView([37.871, -122.259], 12);
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  maxZoom: 19,
-  attribution: '© OpenStreetMap'
-}).addTo(map);
-
-// Create display for station info on map_Section
+// Create display for station-info on map_Section
 function dataDisplay1(arr, price) {
   bgLocationCard.innerHTML = ''
   const BLC = document.createElement('div')
@@ -95,17 +124,17 @@ function dataDisplay1(arr, price) {
       <p>${price}</p> 
       `
   bgLocationCard.appendChild(BLC)
-  saveStation([arr.station_name, arr.id])
+  saveStation([arr.station_name, arr.id, arr.zip])//CHANGED
 }
 
-// Create display for station info on nearby_Locations section
+// Create display for station-info in nearby_Locations_section
 function dataDisplay5(arr, length) {
   const card = document.createElement('div')
   fiveCards.innerHTML = "";
 
   for (let i = 1; i < length; i++) {
     arr[i].ev_pricing == null ? price = 'free' : price = arr[i].ev_pricing
-
+    // create text
     const stationInfo = document.createElement('aside')
     stationInfo.setAttribute('class', 'card')
     stationInfo.innerHTML = `
@@ -117,21 +146,43 @@ function dataDisplay5(arr, length) {
     <p>${price}</p> 
     `
     card.appendChild(stationInfo)
-
+    
+    //create button
     const cardBtn = document.createElement('button')
     cardBtn.classList.add('cardBtns')
     cardBtn.textContent = arr[i].station_name
     cardBtn.setAttribute('value', `${arr[i].id}`)
+    cardBtn.setAttribute('datazip', `${arr[i].zip}`)//CHANGED
     stationInfo.prepend(cardBtn)
+
     cardBtn.addEventListener('click', () => {
       getApiByID(cardBtn.value)
-      saveStation([cardBtn.textContent, cardBtn.value])
+      console.log(cardBtn)
+      saveStation([cardBtn.textContent, cardBtn.value, cardBtn.getAttribute('datazip')])//CHANGED
     })
   }
   fiveCards.appendChild(card)
 }
 
-// Save searches
+// Create display of previous searches as buttons 
+function displaySearches() {
+  if (!localStorage.station) { return }
+  let searches = JSON.parse(localStorage.getItem('station'))
+
+  savedLocations.innerHTML = ''
+  for (let i = 0; i < searches.length; i++) {
+    let searchItem = document.createElement('button')
+    searchItem.textContent = searches[i][0]
+    searchItem.setAttribute('class', 'searchItem')
+    searchItem.addEventListener('click', () => {
+      getApiByID(searches[i][1])
+      getApiByZip(searches[i][2])
+    })
+    savedLocations.appendChild(searchItem)
+  }
+} displaySearches()
+
+// Save and persist searches in local storage
 function saveStation(content) {
   let newArr = []
   stationArr.forEach(element => newArr.push(element[0]))
@@ -142,44 +193,3 @@ function saveStation(content) {
     displaySearches()
   }
 }
-
-//Create display previous searches as buttons 
-function displaySearches() {
-  if (!localStorage.station) { return }
-  let searches = JSON.parse(localStorage.getItem('station'))
-
-  savedLocations.innerHTML = ''
-  for (let i = 0; i < searches.length; i++) {
-    let searchItem = document.createElement('button')
-    searchItem.textContent = searches[i][0]
-    searchItem.setAttribute('class', 'searchItem')
-    searchItem.addEventListener('click', () => { getApiByID(searches[i][1]) })
-    savedLocations.appendChild(searchItem)
-  }
-} displaySearches()
-
-//returns ascending distance list
-//default loads with last searched
-
-//Search Buttons
-//retailer Name
-//Zip
-
-//BLC
-//h4 - retailer name 
-//p - distance
-//p - address
-//p - City, State, Zip
-//p - phone
-//p - ev connector type
-//p - ev_pricing
-
-//Nearby
-//div - 5 cards w/
-//h4 - retailer name 
-//p - distance
-//p - address
-//p - City, State, Zip
-//p - phone
-//p - ev connector type
-//p - ev_pricing
