@@ -21,6 +21,8 @@ const searchBtn = document.getElementById('searchBtn')
 searchBtn.addEventListener('click', (e) => {
   e.preventDefault()
   getApi(searchInput.value)
+  getApiByGeocode(searchInput.value)
+
 })
 
 
@@ -45,7 +47,7 @@ function getApi(location) {
       // display nearby locations
       dataDisplay5(data.fuel_stations, 6)
       // display map
-      latLon(data.latitude, data.longitude)
+     // latLon(data.latitude, data.longitude)
     });
 }
 
@@ -93,6 +95,23 @@ function getApiByZip(location) {
     });
 }
 
+// https://developer.myptv.com/Documentation/Geocoding%20API/QuickStart.htm
+var geocodeKey = `M2IxMmQ0MGJmMzBlNDk0ZWFjNmMxYjY5NDg4NThkZDY6MmE5YmM2ZGUtMTc4My00OTFlLWFmMmQtNWUxZTMzZDNiM2Rm`
+
+function getApiByGeocode(location) {
+  var requestUrl = `https://api.myptv.com/geocoding/v1/locations/by-text?searchText=${location}&apiKey=${geocodeKey}`  
+  fetch(requestUrl)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      // Use the console to examine the response
+      console.log(data);
+
+      // TODO: Run functions
+      latLon(data.locations[0].referencePosition.latitude, data.locations[0].referencePosition.longitude)
+    });
+}
 // Load default map of Berkeley, California
 map = L.map('mapDiv').setView([37.871, -122.259], 12);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
