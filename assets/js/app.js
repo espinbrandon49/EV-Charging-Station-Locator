@@ -61,20 +61,26 @@ function getApiByID(location) {
 
       // TODO: Run functions
       dataDisplay1(data.alt_fuel_station)
-      //latLon(data.alt_fuel_station.latitude, data.alt_fuel_station.longitude)
     });
 }
 
 // View EV stations on a map in your given (search parameter) region
 function latLon(lat, lon) {
   if (map != undefined) { map.remove(); }
- map = L.map('mapDiv').setView([`${lat}`, `${lon}`], 12);
+  map = L.map('mapDiv').setView([lat, lon], 12);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '© OpenStreetMap'
   }).addTo(map);
 }
- 
+
+//if (map != undefined) { map.remove(); }
+map = L.map('mapDiv').setView([37.871, -122.259], 12);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  maxZoom: 19,
+  attribution: '© OpenStreetMap'
+}).addTo(map);
+
 // Create display for station info on map_Section
 function dataDisplay1(arr, price) {
   bgLocationCard.innerHTML = ''
