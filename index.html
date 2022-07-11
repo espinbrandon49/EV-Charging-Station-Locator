@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,129 +9,50 @@
     <link rel="stylesheet" href=".///assets/css/skeleton.css">
     <link rel="stylesheet" href=".//assets/css/style.css">
 
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ==" crossorigin="" />
-    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ==" crossorigin=""></script>
+    <link rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
+      integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="crossorigin=""
+      />
+    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
+      integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="crossorigin=""></script>
     <title>🍃Alternative Fuel</title>
-</head>
+  </head>
 
-<body>
+  <body>
 
     <header>
-
-        <h1>🍃Alternative</h1>
-        <div id="the">Click the button</div>
-        <button id="startBtn">
-           
-            Start</button>
-        <div id="find">
-            <p>Find Your Station</p>
-            <p>⚡🔌🚘 </p>
-        </div>
-
+      <h1>Alternative</h1>
+        <p>⚡🔌🚘 </p>
     </header>
 
-
-
-
     <main id="main" class="container">
-        <section id="searchAndMap">
 
-            <article id="searchForm" style="background: rgb(7, 191, 219)">
-                <form id="searchSection">
-                    <h2>Search Cities or Zip Code</h2>
-                    <div>
-                        <input id="searchInput" type="search" placeholder="city or zipcode">
-                        <label for="searchInput"><button id="searchBtn"> Search
-          </button></label>
-                    </div>
-                </form>
-                <div id="savedLocations">
-                    <button class="btn">Name1</button>
-                    <button class="btn">Name1</button>
-                    <button class="btn">Name1</button>
-                </div>
+      <article id="searchForm">
+        <form id="searchSection">
+          <h2>Search city or zipcode</h2>
+          <div class="row">
+            <input class="six columns" id="searchInput" type="search"
+              placeholder="city zipcode">
+            <input id="searchBtn" value='search' type="submit" class='button
+              button-primary'/>
+          </div>
+        </form>
+        <div id="savedLocations"></div>
+      </article>
 
-            </article>
+      <div class="row bgMapDiv">
+      <section id="bgLocationCard" class="four columns"></section>
+      <section id="mapDiv" class="eight columns">Map</section>
+    </div>
 
-        </section>
-        <section id="bgLocationCard" class="row" style="background:yellow">
-            <h2>Location</h2>
-            <p>Distance</p>
-            <p>Address</p>
-            <p>Phone number</p>
-            <p>info</p>
-            <p>info</p>
-
-
-        </section>
-
-
-
-
-
-        <article id='mapSection'>
-
-
-            <section id="mapDiv">Map</section>
-
-
-
-        </article>
-
-
-
-
-        <section id="otherLocations" class="row" style="background: blue">
-            <h2>Other Locations</h2>
-
-
-            <section id='fiveCards' class="row" style="background: green">
-                <div>
-                    <aside class="card" class="row" style="background-color: red;">
-                        <button>button</button>
-                        <p>info</p>
-                        <p>info</p>
-                        <p>info</p>
-                        <p>info</p>
-                        <p>info</p>
-                        <p>info</p>
-                        <aside class="card" class="row" style="background-color: rgb(18, 210, 198);">
-                            <button>button</button>
-                            <p>info</p>
-                            <p>info</p>
-                            <p>info</p>
-                            <p>info</p>
-                            <p>info</p>
-                            <p>info</p>
-                            <aside class="card" class="row" style="background-color: rgb(224, 151, 15);">
-                                <button>button</button>
-                                <p>info</p>
-                                <p>info</p>
-                                <p>info</p>
-                                <p>info</p>
-                                <p>info</p>
-                                <p>info</p>
-                            </aside>
-
-                        </aside>
-
-
-                    </aside>
-
-
-
-                </div>
-
-
-            </section>
-
-        </section>
+      <section id="otherLocations">
+        <h2>Nearby Locations</h2>
+        <section id='fiveCards'></section>
+      </section>
 
     </main>
 
-
-
     <script src="./assets/js/app.js"></script>
-</body>
+  </body>
 
 </html>
