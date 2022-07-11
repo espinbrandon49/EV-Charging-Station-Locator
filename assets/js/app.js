@@ -1,5 +1,8 @@
 const apikey = '2RWEmIH2pRUJZcqZ1v5HIAPtokWgcKHxrzrK8GK2'
+
+//local storage array
 let stationArr = JSON.parse(localStorage.getItem('station')) || []
+
 const searchInput = document.getElementById('searchInput')
 const bgLocationCard = document.getElementById('bgLocationCard')
 const fiveCards = document.getElementById('fiveCards')
@@ -7,8 +10,6 @@ const cardBtns = document.getElementsByClassName('cardBtns')
 const savedLocations = document.getElementById('savedLocations')
 const mapDiv = document.getElementById('mapDiv')
 let map;
-
-
 
 // Click search_Button to find a station
 const searchBtn = document.getElementById('searchBtn')
@@ -18,7 +19,6 @@ searchBtn.addEventListener('click', (e) => {
   getApiByGeocode(searchInput.value)
 searchInput.value=''
 })
-
 
 //1. Retrieve and display station location and retailer information from search bar
 function getApi(location) {
@@ -45,7 +45,6 @@ function getApi(location) {
     });
 }
 
-
 //2. Retrieve and display station location and retailer information with card buttons
 function getApiByID(location) {
   //https://developer.nrel.gov/docs/transportation/alt-fuel-stations-v1/get/
@@ -67,7 +66,6 @@ function getApiByID(location) {
       latLon(data.alt_fuel_station.latitude, data.alt_fuel_station.longitude)
     });
 }
-
 
 //3. Retrieve and display station location and retailer information with saved search buttons
 function getApiByZip(location) {
