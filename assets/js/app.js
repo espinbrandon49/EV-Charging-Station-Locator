@@ -8,13 +8,7 @@ const savedLocations = document.getElementById('savedLocations')
 const mapDiv = document.getElementById('mapDiv')
 let map;
 
-// Click start_Button to use station search application
-document.getElementById("startBtn").addEventListener("click", function () {
-  document.getElementById("main").classList.remove("hidden")
-  document.getElementById("startBtn").classList.add("hidden")
-  document.getElementById("the").classList.add("hidden")
-  document.getElementById("find").classList.add("hidden")
-});
+
 
 // Click search_Button to find a station
 const searchBtn = document.getElementById('searchBtn')
@@ -22,7 +16,7 @@ searchBtn.addEventListener('click', (e) => {
   e.preventDefault()
   getApi(searchInput.value)
   getApiByGeocode(searchInput.value)
-
+searchInput.value=''
 })
 
 
@@ -45,7 +39,7 @@ function getApi(location) {
       // display station info for map view
       dataDisplay1(data.fuel_stations[0])
       // display nearby locations
-      dataDisplay5(data.fuel_stations, 6)
+      dataDisplay5(data.fuel_stations, 14)
       // display map
      // latLon(data.latitude, data.longitude)
     });
@@ -135,11 +129,11 @@ function dataDisplay1(arr, price) {
   const BLC = document.createElement('div')
   arr.ev_pricing == null ? price = 'free' : price = arr.ev_pricing
   BLC.innerHTML = `
-      <h4 onclick="test()" class='cardBtns'>${arr.station_name}</h4>
+      <h4 class='cardBtns'>${arr.station_name}</h4>
       <p>${arr.street_address}</p> 
       <p>${arr.city}, ${arr.state}, ${arr.zip}</p> 
       <p>${arr.station_phone}</p> 
-      <p>${arr.ev_connector_types}</p> 
+      <p>🔌 ${arr.ev_connector_types}</p> 
       <p>${price}</p> 
       `
   bgLocationCard.appendChild(BLC)
@@ -157,11 +151,11 @@ function dataDisplay5(arr, length) {
     const stationInfo = document.createElement('aside')
     stationInfo.setAttribute('class', 'card')
     stationInfo.innerHTML = `
-    <p>${arr[i].distance.toFixed(2)}</p>
+    <p>🚘 ${arr[i].distance.toFixed(2)} mi.</p>
     <p>${arr[i].street_address}</p> 
     <p>${arr[i].city}, ${arr[i].state}, ${arr[i].zip}</p> 
     <p>${arr[i].station_phone}</p> 
-    <p>${arr[i].ev_connector_types}</p> 
+    <p>🔌 ${arr[i].ev_connector_types}</p> 
     <p>${price}</p> 
     `
     card.appendChild(stationInfo)
@@ -171,35 +165,17 @@ function dataDisplay5(arr, length) {
     cardBtn.classList.add('cardBtns')
     cardBtn.textContent = arr[i].station_name
     cardBtn.setAttribute('value', `${arr[i].id}`)
-    cardBtn.setAttribute('datazip', `${arr[i].zip}`)//CHANGED
+    cardBtn.setAttribute('datazip', `${arr[i].zip}`)
     stationInfo.prepend(cardBtn)
 
     cardBtn.addEventListener('click', () => {
       getApiByID(cardBtn.value)
       console.log(cardBtn)
-      saveStation([cardBtn.textContent, cardBtn.value, cardBtn.getAttribute('datazip')])//CHANGED
+      saveStation([cardBtn.textContent, cardBtn.value, cardBtn.getAttribute('datazip')])
     })
   }
   fiveCards.appendChild(card)
 }
-
-// Create display of previous searches as buttons 
-/*function displaySearches() {
-  if (!localStorage.station) { return }
-  let searches = JSON.parse(localStorage.getItem('station'))
-
-  savedLocations.innerHTML = ''
-  for (let i = 0; i < searches.length; i++) {
-    let searchItem = document.createElement('button')
-    searchItem.textContent = searches[i][0]
-    searchItem.setAttribute('class', 'searchItem')
-    searchItem.addEventListener('click', () => {
-      getApiByID(searches[i][1])
-      getApiByZip(searches[i][2])
-    })
-    savedLocations.appendChild(searchItem)
-  }
-} displaySearches()*/
 
 function displaySearches() {
   if (!localStorage.station) { return }
@@ -207,9 +183,12 @@ function displaySearches() {
 
   savedLocations.innerHTML = ''
   for (let i = 0; i < searches.length; i++) {
+    let buttonDiv = document.createElement('div')
+    buttonDiv.setAttribute('class', 'buttonDiv')
     const searchItem = document.createElement('button')
     searchItem.textContent = searches[i][0]
     searchItem.setAttribute('class', 'searchItem')
+    buttonDiv.appendChild(searchItem)
     searchItem.addEventListener('click', () => {
       getApiByID(searches[i][1])
       getApiByZip(searches[i][2])
@@ -218,30 +197,20 @@ function displaySearches() {
     const deleteBtn = document.createElement('button')
     deleteBtn.textContent = 'X'
     deleteBtn.setAttribute('class', 'deleteBtn')
-    savedLocations.appendChild(deleteBtn)
+    buttonDiv.appendChild(deleteBtn)
     deleteBtn.addEventListener('click', () => {
       deleteSearch(stationArr, searches[i])
-      console.log(searches[i])
-      console.log(typeof searches[i])
-      console.log(stationArr.indexOf(searches[i]))
-      console.log(stationArr)
-      console.log(searches)
     })
-    savedLocations.appendChild(searchItem)
+    savedLocations.appendChild(buttonDiv)
   }
 } displaySearches()
 
 function deleteSearch (arr, content) {
   let newContent = content.toString()
   stationArr.splice(arr.indexOf(newContent), 1)
-  console.log(arr)
-  console.log(arr.indexOf(newContent))
-  console.log(typeof newContent)
-  console.log(newContent)
   let stations = JSON.stringify(stationArr)
   localStorage.setItem('station', stations)
   displaySearches()
-  console.log(arr)
 }
 
 // Save and persist searches in local storage

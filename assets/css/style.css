@@ -1,124 +1,65 @@
-/* header {
-    text-align: left;
-    font-size: xx-large;
-    color: rgb(5, 69, 5);
-    text-align: center;
-}
-
-.find {
-    font-size: xx-large;
-    color: black;
-    font-size: xx-large; 
-    font-weight: bolder;
-}
-
-.hidden {
-    display: none;
-}
-
-.the {
-    font-size: xx-large;
-    color: black;
-    font-size: xx-large;
-    font-weight: bolder;
-}
-
-#startBtn {
-    font: bolder;
-    font-size: 50px;
-    color: black;
-    background-color: aquamarine;
-    opacity: .95;
-}
-
-main {
-    border: 5px solid black;
-    width: 100vw;
-    background-color: rgb(208, 225, 193);
-    opacity: .9;
-}
-
-
-#searchAndMap {
-    display: flex;
-}
-
-#searchForm {
-    width: 25%;
-    border: 1px solid green;
-}
-
-form {
-    border: 1px solid green;
-}
-
-#savedLocations {
-    border: 1px solid green;
+header {
+    padding-top: 40px;
+    margin-bottom: 40px;
+    background-image: url(../images/carA.jpg);
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
-#mapSection {
-    border: 1px solid green;
+p,
+#searchInput {
+    font-size: 1.5em;
+    font-weight: 400;
+    color: #222;
+    line-height: 1;
+}
+
+h4, #searchInput {
+    text-transform: uppercase;
+    color: #222;
+}
+
+#searchInput {
+    margin-right: 5px;
+}
+
+.searchItem {
+    border-right: none;
+    border-radius: 4px 0px 0px 4px;
+}
+
+.searchItem:hover,
+.cardBtns:hover {
+    color: #FFF;
+    background-color: #1EAEDB;
+    border: #1EAEDB;
+}
+
+.deleteBtn {
+    border-radius: 0px 4px 4px 0px;
+    background-color: #FF5A5F;
+}
+
+.bgMapDiv {
+    margin: 2.5vh 0;
     display: flex;
-    width: 75%;
-    height: 50vh;
+    height: 40vh;
 }
 
-#bgLocationCard {
-    border: 1px solid green;
-    width: 25%;
-}
+#fiveCards>div, #savedLocations {
+    display: flex;
+    flex-wrap: wrap;
 
-#mapDiv {
-    border: 1px solid green;
-    width: 75%;
-    height: 100%;
-}
-
-#otherLocations {
-    border: 1px solid green;
 }
 
 #fiveCards>div {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 .card {
-    border: 1px solid green;
-    min-width: 100px;
-}
-
-
-added work David */
-
-body {
-    /* background-image: url(../images/carA.jpg); */
-}
-
-.hidden {
-    display: none;
-}
-
-#startBtn {
-    font: bolder;
-    font-size: 50px;
-    color: black;
-    background-color: aquamarine;
-    opacity: .95;
-}
-
-#mapSection {
-    border: 1px solid green;
-    display: flex;
-    width: 75%;
-    height: 50vh;
-}
-
-#mapDiv {
-    border: 1px solid green;
-    width: 100%;
-    height: 100%;
+    border: 1px solid black;
+    border-radius: 4px;
+    padding: 10px;
+    max-width: 320px;
 }
