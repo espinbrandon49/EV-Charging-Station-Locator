@@ -86,7 +86,7 @@ function getApiByZip(location) {
 
       // TODO: Run functions
       dataDisplay5(data.fuel_stations, 6)
-      latLon(data.locations[0].referencePosition.latitude, data.locations[0].referencePosition.longitude)
+      latLon(data.fuel_stations[1].latitude, data.fuel_stations[1].longitude)
     });
 }
 
