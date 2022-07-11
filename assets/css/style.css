@@ -15,8 +15,9 @@ p,
     line-height: 1;
 }
 
-h4, #searchInput {
-    text-transform: uppercase;
+h4,
+#searchInput {
+     text-transform: uppercase; 
     color: #222;
 }
 
@@ -41,16 +42,18 @@ h4, #searchInput {
     background-color: #FF5A5F;
 }
 
+
 .bgMapDiv {
+    border: 1px solid black;
     margin: 2.5vh 0;
     display: flex;
     height: 40vh;
 }
 
-#fiveCards>div, #savedLocations {
+#fiveCards>div,
+#savedLocations {
     display: flex;
     flex-wrap: wrap;
-
 }
 
 #fiveCards>div {
@@ -63,3 +66,13 @@ h4, #searchInput {
     padding: 10px;
     max-width: 320px;
 }
+
+@media (max-width: 815px) {
+    h4 {
+      font-size: 1.75rem;
+    }
+  
+    #bgLocationCard {
+      font-size: 1rem;
+    }
+  }
