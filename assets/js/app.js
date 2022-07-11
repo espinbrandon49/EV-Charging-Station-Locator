@@ -39,7 +39,7 @@ function getApi(location) {
       // display station info for map view
       dataDisplay1(data.fuel_stations[0])
       // display nearby locations
-      dataDisplay5(data.fuel_stations, 14)
+      dataDisplay5(data.fuel_stations, 8)
       // display map
      // latLon(data.latitude, data.longitude)
     });
@@ -86,6 +86,7 @@ function getApiByZip(location) {
 
       // TODO: Run functions
       dataDisplay5(data.fuel_stations, 6)
+      latLon(data.locations[0].referencePosition.latitude, data.locations[0].referencePosition.longitude)
     });
 }
 
@@ -103,9 +104,10 @@ function getApiByGeocode(location) {
       console.log(data);
 
       // TODO: Run functions
-      latLon(data.locations[0].referencePosition.latitude, data.locations[0].referencePosition.longitude)
+      latLon(data.locations[1].referencePosition.latitude, data.locations[1].referencePosition.longitude)
     });
 }
+
 // Load default map of Berkeley, California
 map = L.map('mapDiv').setView([37.871, -122.259], 12);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
