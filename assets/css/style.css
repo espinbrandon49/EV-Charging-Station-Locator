@@ -1,4 +1,4 @@
-header {
+/* header {
     text-align: left;
     font-size: xx-large;
     color: rgb(5, 69, 5);
@@ -8,7 +8,7 @@ header {
 .find {
     font-size: xx-large;
     color: black;
-    font-size: xx-large;
+    font-size: xx-large; 
     font-weight: bolder;
 }
 
@@ -33,16 +33,11 @@ header {
 
 main {
     border: 5px solid black;
-    max-width: 1200px;
-    margin: 0 auto;
+    width: 100vw;
     background-color: rgb(208, 225, 193);
     opacity: .9;
 }
 
-body {
-    background-image: url(../images/carA.jpg);
-    background-repeat: repeat-x;
-}
 
 #searchAndMap {
     display: flex;
@@ -85,7 +80,7 @@ form {
     border: 1px solid green;
 }
 
-#fiveCards > div{
+#fiveCards>div {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
@@ -96,67 +91,34 @@ form {
     min-width: 100px;
 }
 
-/* added work David */
 
-label>.label-body {
-    display: inline-block;
-    margin-left: .5rem;
-    font-weight: normal;
+added work David */
+
+body {
+    /* background-image: url(../images/carA.jpg); */
 }
 
-.button,
-button,
-input[type="submit"],
-input[type="reset"],
-input[type="button"] {
-    display: inline-block;
-    height: 38px;
-    padding: 0 30px;
-    color: #555;
-    text-align: center;
-    font-size: 11px;
-    font-weight: 600;
-    line-height: 38px;
-    letter-spacing: .1rem;
-    text-transform: uppercase;
-    text-decoration: none;
-    white-space: nowrap;
-    background-color: transparent;
-    border-radius: 4px;
-    border: 1px solid #bbb;
-    cursor: pointer;
-    box-sizing: border-box;
+.hidden {
+    display: none;
 }
 
-.btn:hover,
-button:hover,
-#searchBtn:hover,
-button:hover,
-input[type="searchBtn"]:hover,
-input[type="locations"]:hover,
-.btn:focus,
-#searchBtn:focus,
-button:focus,
-input[type="searchBtn"]:focus,
-input[type="locations"]:focus {
+#startBtn {
+    font: bolder;
+    font-size: 50px;
     color: black;
-    border-color: black;
-    background-color: rgb(69, 248, 69);
-    outline: 0;
+    background-color: aquamarine;
+    opacity: .95;
 }
 
-.button.btn,
-button.btn,
-#searchBtn,
-button.searchBtn,
-input[type="searchBtn"].button-primary,
-input[type="locations"].button-primary {
-    color: black;
-    background-color: #a0f0a3;
-    border-color: black;
+#mapSection {
+    border: 1px solid green;
+    display: flex;
+    width: 75%;
+    height: 50vh;
 }
 
-.select,
-.label {
-    text-align: right;
+#mapDiv {
+    border: 1px solid green;
+    width: 100%;
+    height: 100%;
 }
