@@ -1,4 +1,4 @@
-# Easy Access Weather
+# EV Charging Station Locator
 
 ## Description
 A EV charging location app that collects data based on a person's search -- city or zip code -- and displays various data parameters detailing the charging station location and retail information. The application incorporates five parts:
