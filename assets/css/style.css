@@ -49,6 +49,14 @@ h4,
     height: 40vh;
 }
 
+h4 {
+    font-size: 2.5rem;
+}
+
+#bgLocationCard {
+    padding: 10px;
+}
+
 #fiveCards>div,
 #savedLocations {
     display: flex;
@@ -65,6 +73,10 @@ h4,
     padding: 10px;
     width: 300px;
     margin-bottom: 2px;
+}
+
+.cardBtns {
+    width: 100%;
 }
 
 @media (max-width: 815px) {
