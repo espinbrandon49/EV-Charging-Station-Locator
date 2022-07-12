@@ -1,35 +1,41 @@
 # Easy Access Weather
 
 ## Description
-A weather dashboard to allow a user to see the weather outlook for multiple cities.  When the user searches for a city they are presented with current and five-day future conditions for that city and that city is added to the search history.  When a city in the search history is clicked then the user is again presented with current and future conditions.
+A EV charging location app that collects data based on a person's search -- city or zip code -- and displays various data parameters detailing the charging station location and retail information. The application incorporates five parts:
+- search input
+- closest charging station near user
+- dynamic map to visualize that main charging station 
+- alternative locations
+- localStorage buttons to go back to stations that were previously highlighted.
+athermap.org/api)
 
-I used the [OpenWeather API](https://openweathermap.org/api) to retrieve weather data for the cities. 
+We used [Leaflet](https://leafletjs.com/) as a third-party API to retrieve a visual map, and two server-side APIs --[National Renewable Energy Laboratory](https://developer.nrel.gov) and [MyPTV](https://developer.myptv.com) --to find data on EV charging stations and geocoding information. For styling, we used Skeleton as a CSS framework and HTML our baseline structure.
 
-GitHub repository: https://github.com/espinbrandon49/easy-access-weather
+GitHub repository: https://github.com/espinbrandon49/EV-Charging-Station-Locator
 
-Deployed Link: https://espinbrandon49.github.io/easy-access-weather/
+Deployed Link: https://espinbrandon49.github.io/EV-Charging-Station-Locator/
 
 ## Installation
 * Runs in the browser
-* Git clone - git@github.com:espinbrandon49/easy-access-weather.git
+* Git clone - git@github.com:espinbrandon49/EV-Charging-Station-Locator.git
 
 ## Tools
-JavaScript, HTML, CSS, Git, GitHub, Chrome DevTools
+JavaScript, HTML, CSS (Skeleton), Git, GitHub, Chrome DevTools, Leaflet, National Renewable Energy Laboratory (NREL), MyPTV
 
 ### JavaScript
-* I set up and used an access key from [OpenWeather API](https://openweathermap.org/api) to access their data using the Fetch API 
+* We set up and used an access key from [NREL API](https://developer.nrel.gov) and [MyPTV](https://developer.myptv.com) to access their data using the Fetch API 
 
-* I reviewed the third party API's documentation to make use of their functionality for 
+* We reviewed the third-party API's documentation to make use of their functionality for 
   - the parameters available
   - the response display
-  - how I should interpret the response
+  - how we should interpret the response
   - various other parts of the functionality such as how to recieve the response in imperial versus absolute units for example.
 
-* I made use of the API's functionality to make requests with specific parameters I needed and were available based on the API's documentation so that I retrieved data applicable to my weather dashboard.
+* We made use of the API's functionality to make requests with specific parameters we needed and were available based on the API's documentation so that we retrieved data applicable to our location tracker.
 
-* I stored the search history using local storage
+* We stored the search history using local storage.
 
-* Document Object Model connects the HTML to my JavaScript
+* Document Object Model connects the HTML to our JavaScript.
 
 * Used console extensively to: 
   - diagnose problems with my JavaScript
@@ -43,26 +49,27 @@ JavaScript, HTML, CSS, Git, GitHub, Chrome DevTools
 * The HTML is referenced throughout the JS and CSS using the web API .
 
 ### CSS
-* The application has responsive layout that adapts to your viewport on various screen sizes
+* The application has responsive layout that adapts to your viewport on various screen sizes.
 * Application user experience is intuitive and easy to navigate.
 * Application user interface style is clean and polished.
+* Application's CSS framework organizes the components into a grid.
 
 ## Git/GitHub
-* The Application is deployed at a live URL and loads with no errors.
-* Repository follows best practices for file structure and naming conventions.
 * Repository commit messages allow one to follow along as the application development story unfolds.
+* Repository maintained consistent code management (GIT) and continuous integration to build and deploy.
+* Collaborators created separate branches and merged them with the main branch to create an efficient workflow. 
 * Repository contains quality readme with description, screenshot, link to deployed application.
 * GitHub repository contains application code.
 
 ## Chrome DevTools
 * Used console to diagnose problems with my JavaScript.
 * Used console to view the results of all of my functions to see that they were doing what I expected and holistically.
-* Using DevTools, I viewed my media queries and application on different device screens and to inspect various elements in the Elements panel.
+* Using DevTools, I viewed my media queries, server-side API fetches, and the application on different device screens and to inspect various elements in the Elements panel.
 * Used DevTools to examine my box sizes, padding, borders, content, etc., and to view element styles in the browser.
 
 
 ## Collaboration
-### Jerome Chenette
+### Dylan Kreisman, David Navarrete Ayala, Brandon Espinosa
 #
 ## Screenshots
-####  ![easy-access-weather](./Assets/images/easy-access-weather.gif)
+####  ![EV Charging Station Locator](./Assets/ev-locator-gif.gif)
