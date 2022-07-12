@@ -1,7 +1,7 @@
 const apikey = '2RWEmIH2pRUJZcqZ1v5HIAPtokWgcKHxrzrK8GK2'
 var geocodeKey = `M2IxMmQ0MGJmMzBlNDk0ZWFjNmMxYjY5NDg4NThkZDY6MmE5YmM2ZGUtMTc4My00OTFlLWFmMmQtNWUxZTMzZDNiM2Rm`
 
-// local storage array
+// saved searches array
 let stationArr = JSON.parse(localStorage.getItem('station')) || []
 
 // html definitions
@@ -13,13 +13,13 @@ const savedLocations = document.getElementById('savedLocations')
 const mapDiv = document.getElementById('mapDiv')
 let map;
 
-// Click search_Button to find a station
+// Click search_Button to find an electric vehichle charging station
 const searchBtn = document.getElementById('searchBtn')
 searchBtn.addEventListener('click', (e) => {
   e.preventDefault()
   getApi(searchInput.value)
   getApiByGeocode(searchInput.value)
-searchInput.value=''
+  searchInput.value = ''
 })
 
 //1. Retrieve and display station location and retailer information from search bar
@@ -38,12 +38,11 @@ function getApi(location) {
       console.log(data);
 
       // TODO: Run functions
+
       // display station info for map view
       dataDisplay1(data.fuel_stations[0])
       // display nearby locations
       dataDisplay5(data.fuel_stations, 14)
-      // display map
-     // latLon(data.latitude, data.longitude)
     });
 }
 
@@ -95,7 +94,7 @@ function getApiByGeocode(location) {
 
   // https://developer.myptv.com/Documentation/Geocoding%20API/QuickStart.htm
 
-  var requestUrl = `https://api.myptv.com/geocoding/v1/locations/by-text?searchText=${location}&apiKey=${geocodeKey}`  
+  var requestUrl = `https://api.myptv.com/geocoding/v1/locations/by-text?searchText=${location}&apiKey=${geocodeKey}`
   fetch(requestUrl)
     .then(function (response) {
       return response.json();
@@ -163,7 +162,7 @@ function dataDisplay5(arr, length) {
     <p>${price}</p> 
     `
     card.appendChild(stationInfo)
-    
+
     //create button
     const cardBtn = document.createElement('button')
     cardBtn.classList.add('cardBtns')
@@ -181,6 +180,7 @@ function dataDisplay5(arr, length) {
   fiveCards.appendChild(card)
 }
 
+//Create display for saved searches as buttons
 function displaySearches() {
   if (!localStorage.station) { return }
   let searches = JSON.parse(localStorage.getItem('station'))
@@ -212,6 +212,7 @@ function displaySearches() {
   }
 } displaySearches();
 
+// Delete items from search history
 // function deleteSearch (arr, content) {
 //   let newContent = content.toString()
 //   stationArr.splice(arr.indexOf(newContent), 3)
@@ -222,13 +223,28 @@ function displaySearches() {
 //   displaySearches()
 // }
 
-function deleteSearch (arr, content) {
+// Delete items from search history
+//function deleteSearch(arr, content) {
+//  let newContent = content.toString()
+//  console.log(newContent)
+//  console.log(arr)
+//  arr.splice(arr.indexOf(newContent), 1)
+//  console.log(arr.indexOf(newContent))
+//
+//  console.log(content)
+//  console.log(arr)
+//  let stations = JSON.stringify(stationArr)
+//  localStorage.setItem('station', stations)
+//  displaySearches()
+//}
+
+function deleteSearch(arr, content) {
   let newContent = content.toString()
   console.log(newContent)
   console.log(arr)
   arr.splice(arr.indexOf(newContent), 1)
   console.log(arr.indexOf(newContent))
- 
+
   console.log(content)
   console.log(arr)
   let stations = JSON.stringify(stationArr)
@@ -236,7 +252,8 @@ function deleteSearch (arr, content) {
   displaySearches()
 }
 
-// Save and persist searches in local storage
+
+// Save searches in local storage
 function saveStation(content) {
   let newArr = []
   stationArr.forEach(element => newArr.push(element[0]))
