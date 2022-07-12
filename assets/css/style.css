@@ -17,7 +17,7 @@ p,
 
 h4,
 #searchInput {
-     text-transform: uppercase; 
+    text-transform: uppercase;
     color: #222;
 }
 
@@ -42,7 +42,6 @@ h4,
     background-color: #FF5A5F;
 }
 
-
 .bgMapDiv {
     border: 1px solid black;
     margin: 2.5vh 0;
@@ -57,22 +56,70 @@ h4,
 }
 
 #fiveCards>div {
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 
 .card {
     border: 1px solid black;
     border-radius: 4px;
     padding: 10px;
-    max-width: 320px;
+    width: 300px;
+    margin-bottom: 2px;
 }
 
 @media (max-width: 815px) {
     h4 {
-      font-size: 1.75rem;
+        font-size: 1.5rem;
+        font-weight: 600;
     }
-  
+
     #bgLocationCard {
-      font-size: 1rem;
+        font-size: 1rem;
     }
-  }
+
+    .searchItem {
+        max-width: 250px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+}
+
+@media (max-width: 550px) {
+    #savedLocations {
+        justify-content: space-evenly;
+    }
+
+    #searchBtn,
+    #searchInput {
+        width: 100%;
+    }
+
+    .searchItem {
+        max-width: 150px;
+    }
+
+    .bgMapDiv {
+        flex-wrap: wrap;
+        border: none;
+    }
+
+    #bgLocationCard {
+        width: 100%;
+        text-align: center;
+    }
+
+    #mapDiv {
+        width: 100%;
+        height: 400px;
+    }
+
+    #fiveCards {
+        position: relative;
+        margin-top: 310px;
+    }
+
+    #otherLocations>h2 {
+        display: none;
+    }
+}
