@@ -1,8 +1,10 @@
 const apikey = '2RWEmIH2pRUJZcqZ1v5HIAPtokWgcKHxrzrK8GK2'
+var geocodeKey = `M2IxMmQ0MGJmMzBlNDk0ZWFjNmMxYjY5NDg4NThkZDY6MmE5YmM2ZGUtMTc4My00OTFlLWFmMmQtNWUxZTMzZDNiM2Rm`
 
-//local storage array
+// local storage array
 let stationArr = JSON.parse(localStorage.getItem('station')) || []
 
+// html definitions
 const searchInput = document.getElementById('searchInput')
 const bgLocationCard = document.getElementById('bgLocationCard')
 const fiveCards = document.getElementById('fiveCards')
@@ -39,7 +41,7 @@ function getApi(location) {
       // display station info for map view
       dataDisplay1(data.fuel_stations[0])
       // display nearby locations
-      dataDisplay5(data.fuel_stations, 8)
+      dataDisplay5(data.fuel_stations, 14)
       // display map
      // latLon(data.latitude, data.longitude)
     });
@@ -83,15 +85,16 @@ function getApiByZip(location) {
       console.log(data);
 
       // TODO: Run functions
-      dataDisplay5(data.fuel_stations, 6)
+      dataDisplay5(data.fuel_stations, 14)
       latLon(data.fuel_stations[1].latitude, data.fuel_stations[1].longitude)
     });
 }
 
-// https://developer.myptv.com/Documentation/Geocoding%20API/QuickStart.htm
-var geocodeKey = `M2IxMmQ0MGJmMzBlNDk0ZWFjNmMxYjY5NDg4NThkZDY6MmE5YmM2ZGUtMTc4My00OTFlLWFmMmQtNWUxZTMzZDNiM2Rm`
-
+//4. Retrieve and display reverse geocode for map and marker
 function getApiByGeocode(location) {
+
+  // https://developer.myptv.com/Documentation/Geocoding%20API/QuickStart.htm
+
   var requestUrl = `https://api.myptv.com/geocoding/v1/locations/by-text?searchText=${location}&apiKey=${geocodeKey}`  
   fetch(requestUrl)
     .then(function (response) {
@@ -121,6 +124,7 @@ function latLon(lat, lon) {
     maxZoom: 19,
     attribution: '© OpenStreetMap'
   }).addTo(map);
+  var marker = L.marker([lat, lon]).addTo(map)
 }
 
 // Create display for station-info on map_Section
@@ -198,16 +202,35 @@ function displaySearches() {
     deleteBtn.textContent = 'X'
     deleteBtn.setAttribute('class', 'deleteBtn')
     buttonDiv.appendChild(deleteBtn)
+
     deleteBtn.addEventListener('click', () => {
       deleteSearch(stationArr, searches[i])
+      console.log(searches[i])
     })
+
     savedLocations.appendChild(buttonDiv)
   }
-} displaySearches()
+} displaySearches();
+
+// function deleteSearch (arr, content) {
+//   let newContent = content.toString()
+//   stationArr.splice(arr.indexOf(newContent), 3)
+//   console.log(arr.indexOf(newContent))
+//   console.log(content)
+//   let stations = JSON.stringify(stationArr)
+//   localStorage.setItem('station', stations)
+//   displaySearches()
+// }
 
 function deleteSearch (arr, content) {
   let newContent = content.toString()
-  stationArr.splice(arr.indexOf(newContent), 1)
+  console.log(newContent)
+  console.log(arr)
+  arr.splice(arr.indexOf(newContent), 1)
+  console.log(arr.indexOf(newContent))
+ 
+  console.log(content)
+  console.log(arr)
   let stations = JSON.stringify(stationArr)
   localStorage.setItem('station', stations)
   displaySearches()
