@@ -1,4 +1,4 @@
-# Easy Access Weather
+# EV Charging Station Locator
 
 ## Description
 A EV charging location app that collects data based on a person's search -- city or zip code -- and displays various data parameters detailing the charging station location and retail information. The application incorporates five parts:
@@ -46,7 +46,7 @@ JavaScript, HTML, CSS (Skeleton), Git, GitHub, Chrome DevTools, Leaflet, Nationa
 * The source code uses semantic HTML elements.
 * The structure of the HTML elements follow a logical structure that is key for DOM references, styling, and access to the elements from JS and CSS. 
 * The HTML follows best practices for class/id naming conventions, indentation, etc. so that I was able to concisely use the Document interfaces such as getElementById() in JavaScript to access the inputs/element data, display accurate outputs, and connect event handlers.
-* The HTML is referenced throughout the JS and CSS using the web API .
+* The HTML is referenced throughout the JS and CSS using the web API.
 
 ### CSS
 * The application has responsive layout that adapts to your viewport on various screen sizes.
