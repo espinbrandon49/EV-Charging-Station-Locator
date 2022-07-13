@@ -17,6 +17,7 @@ let map;
 const searchBtn = document.getElementById('searchBtn')
 searchBtn.addEventListener('click', (e) => {
   e.preventDefault()
+  bgLocationCard.scrollIntoView()
   getApi(searchInput.value)
   getApiByGeocode(searchInput.value)
   searchInput.value = ''
