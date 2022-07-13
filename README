@@ -7,7 +7,6 @@ A EV charging location app that collects data based on a person's search -- city
 - dynamic map to visualize that main charging station 
 - alternative locations
 - localStorage buttons to go back to stations that were previously highlighted.
-athermap.org/api)
 
 We used [Leaflet](https://leafletjs.com/) as a third-party API to retrieve a visual map, and two server-side APIs --[National Renewable Energy Laboratory](https://developer.nrel.gov) and [MyPTV](https://developer.myptv.com) --to find data on EV charging stations and geocoding information. For styling, we used Skeleton as a CSS framework and HTML our baseline structure.
 
