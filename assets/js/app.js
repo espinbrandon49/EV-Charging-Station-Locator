@@ -17,6 +17,7 @@ let map;
 const searchBtn = document.getElementById('searchBtn')
 searchBtn.addEventListener('click', (e) => {
   e.preventDefault()
+  bgLocationCard.scrollIntoView()
   getApi(searchInput.value)
   getApiByGeocode(searchInput.value)
   searchInput.value = ''
@@ -173,14 +174,14 @@ function dataDisplay5(arr, length) {
 
     //create button
     const cardBtn = document.createElement('a')
-    cardBtn.setAttribute('href', '#bgLocationCard')
     cardBtn.classList.add('cardBtns')
     cardBtn.textContent = arr[i].station_name
     cardBtn.setAttribute('value', `${arr[i].id}`)
     cardBtn.setAttribute('datazip', `${arr[i].zip}`)
     stationInfo.prepend(cardBtn)
 
-    cardBtn.addEventListener('click', (event) => {
+    stationInfo.addEventListener('click', (event) => {
+      bgLocationCard.scrollIntoView()
       let value = cardBtn.getAttribute('value') 
       getApiByID(value)
       console.log(cardBtn)
