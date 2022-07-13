@@ -30,10 +30,16 @@ h4,
     border-radius: 4px 0px 0px 4px;
 }
 
-.searchItem:hover,
-.cardBtns:hover {
+.card:hover *,
+.card:hover,
+.searchItem:hover {
     color: #FFF;
     background-color: #1EAEDB;
+}
+
+.card:hover,
+.card:hover,
+.searchItem:hover {
     border: #1EAEDB;
 }
 
@@ -56,8 +62,7 @@ h4 {
 
 #bgLocationCard {
     padding: 10px;
-
-    overflow:hidden;
+    overflow: hidden;
 }
 
 #fiveCards>div,
@@ -76,7 +81,7 @@ h4 {
     padding: 10px;
     width: 300px;
     margin-bottom: 2px;
-    overflow:hidden;
+    overflow: hidden;
 }
 
 .cardBtns {
@@ -121,7 +126,6 @@ a {
 
     .bgMapDiv {
         flex-wrap: wrap;
-        
         border: none;
     }
 
