@@ -205,6 +205,7 @@ function displaySearches() {
     searchItem.setAttribute('class', 'searchItem')
     buttonDiv.appendChild(searchItem)
     searchItem.addEventListener('click', () => {
+      bgLocationCard.scrollIntoView()
       getApiByID(searches[i][1])
       getApiByZip(searches[i][2])
     })
