@@ -31,6 +31,14 @@ function getApi(location) {
 
   fetch(requestUrl)
     .then(function (response) {
+      if (!response.ok) {
+        searchInput.value = `invalid city or zipcode`
+        searchInput.setAttribute('style', 'color: red;')
+        setTimeout(
+          function clearSearch() {
+            searchInput.value = ''
+          }, 1000)
+      }
       return response.json();
     })
     .then(function (data) {
@@ -42,7 +50,7 @@ function getApi(location) {
       // display station info for map view
       dataDisplay1(data.fuel_stations[0])
       // display nearby locations
-      dataDisplay5(data.fuel_stations, 14)
+      dataDisplay5(data.fuel_stations, 10)
     });
 }
 
@@ -84,7 +92,7 @@ function getApiByZip(location) {
       console.log(data);
 
       // TODO: Run functions
-      dataDisplay5(data.fuel_stations, 14)
+      dataDisplay5(data.fuel_stations, 10)
       latLon(data.fuel_stations[1].latitude, data.fuel_stations[1].longitude)
     });
 }
@@ -118,7 +126,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 // Create display for map of EV stations in the given (search parameter) region
 function latLon(lat, lon) {
   if (map != undefined) { map.remove(); }
-  map = L.map('mapDiv').setView([lat, lon], 12);
+  map = L.map('mapDiv').setView([lat, lon], 15);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '© OpenStreetMap'
@@ -164,17 +172,19 @@ function dataDisplay5(arr, length) {
     card.appendChild(stationInfo)
 
     //create button
-    const cardBtn = document.createElement('button')
+    const cardBtn = document.createElement('a')
+    cardBtn.setAttribute('href', '#bgLocationCard')
     cardBtn.classList.add('cardBtns')
     cardBtn.textContent = arr[i].station_name
     cardBtn.setAttribute('value', `${arr[i].id}`)
     cardBtn.setAttribute('datazip', `${arr[i].zip}`)
     stationInfo.prepend(cardBtn)
 
-    cardBtn.addEventListener('click', () => {
-      getApiByID(cardBtn.value)
+    cardBtn.addEventListener('click', (event) => {
+      let value = cardBtn.getAttribute('value') 
+      getApiByID(value)
       console.log(cardBtn)
-      saveStation([cardBtn.textContent, cardBtn.value, cardBtn.getAttribute('datazip')])
+      saveStation([cardBtn.textContent, value, cardBtn.getAttribute('datazip')])
     })
   }
   fiveCards.appendChild(card)
@@ -185,6 +195,7 @@ function displaySearches() {
   if (!localStorage.station) { return }
   let searches = JSON.parse(localStorage.getItem('station'))
 
+  //create location button
   savedLocations.innerHTML = ''
   for (let i = 0; i < searches.length; i++) {
     let buttonDiv = document.createElement('div')
@@ -198,60 +209,36 @@ function displaySearches() {
       getApiByZip(searches[i][2])
     })
 
+    //create delete button
     const deleteBtn = document.createElement('button')
     deleteBtn.textContent = 'X'
     deleteBtn.setAttribute('class', 'deleteBtn')
+    deleteBtn.id = i
     buttonDiv.appendChild(deleteBtn)
-
-    deleteBtn.addEventListener('click', () => {
-      deleteSearch(stationArr, searches[i])
-      console.log(searches[i])
+    deleteBtn.addEventListener('click', (event) => {
+      let btnId = event.target.id
+      //let btnContent = event.target.previousElementSibling.innerHTML
+      deleteSearch(stationArr, btnId)
+      //deleteSearch(stationArr, btnContent)
     })
-
     savedLocations.appendChild(buttonDiv)
   }
 } displaySearches();
 
 // Delete items from search history
-// function deleteSearch (arr, content) {
-//   let newContent = content.toString()
-//   stationArr.splice(arr.indexOf(newContent), 3)
-//   console.log(arr.indexOf(newContent))
-//   console.log(content)
-//   let stations = JSON.stringify(stationArr)
-//   localStorage.setItem('station', stations)
-//   displaySearches()
-// }
-
-// Delete items from search history
-//function deleteSearch(arr, content) {
-//  let newContent = content.toString()
-//  console.log(newContent)
-//  console.log(arr)
-//  arr.splice(arr.indexOf(newContent), 1)
-//  console.log(arr.indexOf(newContent))
-//
-//  console.log(content)
-//  console.log(arr)
-//  let stations = JSON.stringify(stationArr)
-//  localStorage.setItem('station', stations)
-//  displaySearches()
-//}
-
 function deleteSearch(arr, content) {
-  let newContent = content.toString()
-  console.log(newContent)
-  console.log(arr)
-  arr.splice(arr.indexOf(newContent), 1)
-  console.log(arr.indexOf(newContent))
-
-  console.log(content)
-  console.log(arr)
-  let stations = JSON.stringify(stationArr)
+  arr.splice(content,1)
+  // for (let i = 0; i < arr.length; i++) {
+  //   let el = arr[i][0]
+  //   console.log(el)
+  //   if(el == content){
+  //     arr.splice(i,1)
+  //   }
+  // }
+  let stations = JSON.stringify(arr)
   localStorage.setItem('station', stations)
   displaySearches()
 }
-
 
 // Save searches in local storage
 function saveStation(content) {
