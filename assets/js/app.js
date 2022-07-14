@@ -47,7 +47,6 @@ function getApi(location) {
       console.log(data);
 
       // TODO: Run functions
-
       // display station info for map view
       dataDisplay1(data.fuel_stations[0])
       // display nearby locations
@@ -219,9 +218,7 @@ function displaySearches() {
     buttonDiv.appendChild(deleteBtn)
     deleteBtn.addEventListener('click', (event) => {
       let btnId = event.target.id
-      //let btnContent = event.target.previousElementSibling.innerHTML
       deleteSearch(stationArr, btnId)
-      //deleteSearch(stationArr, btnContent)
     })
     savedLocations.appendChild(buttonDiv)
   }
@@ -230,13 +227,6 @@ function displaySearches() {
 // Delete items from search history
 function deleteSearch(arr, content) {
   arr.splice(content,1)
-  // for (let i = 0; i < arr.length; i++) {
-  //   let el = arr[i][0]
-  //   console.log(el)
-  //   if(el == content){
-  //     arr.splice(i,1)
-  //   }
-  // }
   let stations = JSON.stringify(arr)
   localStorage.setItem('station', stations)
   displaySearches()
